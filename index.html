@@ -150,13 +150,35 @@ img { max-width: 100%; height: auto; display: block; }
   position: relative; overflow: hidden; background: var(--bg3);
   border-left: 1px solid var(--line);
 }
-.hero-right img { width: 100%; height: 100%; object-fit: cover; opacity: 0.85; }
+.hero-img-reveal {
+  width: 100%; height: 100%; position: absolute; inset: 0;
+  clip-path: inset(0 100% 0 0);
+  animation: revealRight 1.1s cubic-bezier(0.77,0,0.18,1) 0.3s forwards;
+}
+@keyframes revealRight {
+  0%   { clip-path: inset(0 100% 0 0); }
+  100% { clip-path: inset(0 0% 0 0); }
+}
+.hero-img-reveal img {
+  width: 100%; height: 100%; object-fit: cover;
+  opacity: 0; animation: imgFade 0.6s ease 0.5s forwards;
+  user-select: none; pointer-events: none;
+  -webkit-user-drag: none;
+}
+@keyframes imgFade {
+  0%   { opacity: 0; }
+  100% { opacity: 0.88; }
+}
+.hero-img-overlay {
+  position: absolute; inset: 0; pointer-events: none;
+  background: linear-gradient(135deg, rgba(10,10,10,0.35) 0%, transparent 60%);
+}
 .hero-right-ph {
   width: 100%; height: 100%; min-height: 500px;
   display: flex; flex-direction: column; align-items: center; justify-content: center;
   gap: 10px; color: var(--txt3);
 }
-.hero-accent { position: absolute; top: 0; right: 0; width: 4px; height: 100%; background: linear-gradient(180deg, var(--gold), var(--gold2), transparent); }
+.hero-accent { position: absolute; top: 0; right: 0; width: 4px; height: 100%; background: linear-gradient(180deg, var(--gold), var(--gold2), transparent); z-index: 2; }
 
 /* ── STATS BAR ── */
 .stats-bar { display: grid; grid-template-columns: repeat(4,1fr); background: var(--bg3); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
@@ -420,7 +442,7 @@ img { max-width: 100%; height: auto; display: block; }
       <span>IQtekno · Spindle Servisi</span>
     </div>
   </div>
-  <div class="nav-links">
+  <div class="nav-links"><a href="#anasayfa">Ana Sayfa</a>
     <a href="#hizmetler">Hizmetler</a>
     <a href="#avantajlar">Avantajlar</a>
     <a href="#sehirler">Bölgeler</a>
@@ -432,7 +454,7 @@ img { max-width: 100%; height: auto; display: block; }
 </nav>
 
 <!-- HERO -->
-<section class="hero">
+<section class="hero" id="anasayfa">
   <div class="hero-left">
     <div class="hero-badge">
       <span>24 Saat Hizmet · Makine Sökmeden</span>
@@ -457,9 +479,17 @@ img { max-width: 100%; height: auto; display: block; }
       <div class="trust-item"><div class="trust-n">24/7</div><div class="trust-l">Servis</div></div>
     </div>
   </div>
-  <div class="hero-right">
-    <img src="fotolar/hero_spindle.jpg" alt="CNC spindle yerinde taşlama işlemi" onerror="this.parentElement.innerHTML='<div class=\'hero-right-ph\'><svg width=\'64\' height=\'64\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'currentColor\' stroke-width=\'1\'><rect x=\'3\' y=\'3\' width=\'18\' height=\'18\' rx=\'2\'/><circle cx=\'8.5\' cy=\'8.5\' r=\'1.5\'/><polyline points=\'21 15 16 10 5 21\'/></svg><span style=\'color:#444;font-size:12px\'>hero_spindle.jpg</span></div>'">
+  <div class="hero-right" oncontextmenu="return false;" ondragstart="return false;">
+    <div class="hero-img-reveal">
+      <img src="fotolar/hero_spindle.jpg" 
+           alt="Yerinde CNC spindle konik taşlama işlemi - fener mili taşlama servisi"
+           title="Yerinde Spindle Taşlama - IQtekno"
+           draggable="false"
+           oncontextmenu="return false;"
+           loading="eager">
+    </div>
     <div class="hero-accent"></div>
+    <div class="hero-img-overlay" aria-hidden="true"></div>
   </div>
 </section>
 
@@ -780,6 +810,20 @@ const obs = new IntersectionObserver(entries => {
   entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
 }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
 document.querySelectorAll('.fade-in').forEach(el => obs.observe(el));
+
+// Resim koruması — sağ tık engelle
+document.addEventListener('contextmenu', e => {
+  if (e.target.tagName === 'IMG') { e.preventDefault(); return false; }
+});
+document.addEventListener('dragstart', e => {
+  if (e.target.tagName === 'IMG') { e.preventDefault(); return false; }
+});
+// Klavye kısayolları engelle (Print Screen hariç, tarayıcı seviyesinde engellenemez)
+document.addEventListener('keydown', e => {
+  if ((e.ctrlKey || e.metaKey) && (e.key === 's' || e.key === 'u')) {
+    e.preventDefault();
+  }
+});
 </script>
 </body>
 </html>

@@ -2,7 +2,7 @@
 <html lang="tr">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
 <title>Yerinde Spindle Taşlama | Yerinde Taşlama Hizmeti | IQtekno</title>
 <meta name="description" content="Yerinde spindle taşlama hizmeti. Fanuc, Mazak, DMG Mori, Okuma tezgahlara makine sökmeden 3 saatte taşlama. İstanbul, Ankara, Bursa, İzmir. 0554 298 05 04">
 <meta name="keywords" content="spindle taşlama, CNC spindle taşlama, konik taşlama, fener mili taşlama, yerinde spindle taşlama, İstanbul spindle taşlama, Fanuc spindle taşlama">
@@ -406,24 +406,93 @@ img { max-width: 100%; height: auto; display: block; }
 .footer-bottom { display: flex; align-items: center; justify-content: space-between; padding-top: 18px; font-size: 12px; color: var(--txt3); }
 .footer-bottom a { color: var(--gold); }
 
+/* ── ÖNCE/SONRA ── */
+.onceson-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: 4px; overflow: hidden; margin-top: 36px; }
+.onceson-card { background: var(--bg2); display: flex; flex-direction: column; overflow: hidden; transition: background .2s; }
+.onceson-card:hover { background: #161616; }
+.onceson-img-wrap { position: relative; overflow: hidden; }
+.onceson-img-wrap img {
+  width: 100%; aspect-ratio: 4/3; object-fit: cover;
+  transition: transform .4s ease, opacity .3s;
+  opacity: 0.88; display: block;
+  user-select: none; pointer-events: none; -webkit-user-drag: none;
+}
+.onceson-card:hover .onceson-img-wrap img { transform: scale(1.04); opacity: 1; }
+.onceson-label {
+  position: absolute; bottom: 10px; left: 10px;
+  font-size: 11px; font-weight: 700; padding: 4px 12px;
+  border-radius: 2px; letter-spacing: 0.5px; text-transform: uppercase;
+}
+.onceson-label-red { background: rgba(200,40,40,0.9); color: #fff; }
+.onceson-label-green { background: rgba(29,158,117,0.9); color: #fff; }
+.onceson-body { padding: 18px; flex: 1; }
+.onceson-body h3 { font-size: 15px; font-weight: 600; color: var(--txt); margin-bottom: 6px; }
+.onceson-body p { font-size: 13px; color: var(--txt2); line-height: 1.6; }
+
+/* ── VİDEO ── */
+.video-wrap { margin-top: 48px; padding-top: 40px; border-top: 1px solid var(--line); }
+.video-container {
+  position: relative; width: 100%; max-width: 800px;
+  aspect-ratio: 16/9; border-radius: 6px; overflow: hidden;
+  border: 1px solid var(--line);
+  box-shadow: 0 0 0 1px var(--gold-border);
+}
+.video-container iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: none; }
+
 /* ── RESPONSIVE ── */
 @media (max-width: 960px) {
-  .navbar { padding: 0 20px; }
+  .navbar { padding: 0 16px; height: 56px; }
   .nav-links { display: none; }
-  .hero { grid-template-columns: 1fr; }
+  .nav-brand strong { font-size: 13px; }
+  .nav-brand span { font-size: 10px; }
+  .nav-cta { font-size: 12px; padding: 8px 14px; }
+
+  .hero { grid-template-columns: 1fr; min-height: auto; }
   .hero-right { display: none; }
-  .hero-left { padding: 48px 24px; }
-  .hero h1 { font-size: 42px; }
-  .section { padding: 40px 20px; }
-  .markalar-wrap { padding: 24px 20px; }
-  .hizmet-grid { grid-template-columns: 1fr; }
+  .hero-left { padding: 40px 20px 36px; }
+  .hero h1 { font-size: 40px; }
+  .hero-sub { font-size: 15px; }
+  .hero-btns { flex-direction: column; }
+  .btn-primary, .btn-secondary { width: 100%; text-align: center; padding: 14px 20px; }
+  .hero-trust { gap: 14px; }
+  .trust-n { font-size: 22px; }
+  .trust-l { font-size: 10px; }
+
+  .stats-bar { grid-template-columns: repeat(2,1fr); }
+  .stat { padding: 14px 10px; }
+  .stat-n { font-size: 20px; }
+
+  .section { padding: 36px 20px; }
+  .markalar-wrap { padding: 20px 16px; }
+  .sec-title { font-size: 28px; }
+
+  .hizmet-grid { grid-template-columns: 1fr 1fr; }
   .avantaj-grid { grid-template-columns: 1fr; }
   .sehir-grid { grid-template-columns: 1fr; }
-  .blog-grid { grid-template-columns: repeat(2,1fr); }
   .iletisim-grid { grid-template-columns: 1fr; }
-  .stats-bar { grid-template-columns: repeat(2,1fr); }
+  .onceson-grid { grid-template-columns: 1fr; }
+  .blog-grid { grid-template-columns: repeat(2,1fr); }
+
+  .video-container { max-width: 100%; }
   .footer-top { flex-direction: column; gap: 16px; text-align: center; }
+  .footer-links { flex-wrap: wrap; justify-content: center; gap: 12px; }
   .footer-bottom { flex-direction: column; gap: 8px; text-align: center; }
+  .iletisim-cta { padding: 24px 20px; }
+  .cta-tel { font-size: 17px; padding: 13px 24px; }
+}
+
+@media (max-width: 520px) {
+  .hero h1 { font-size: 34px; }
+  .hizmet-grid { grid-template-columns: 1fr; }
+  .blog-grid { grid-template-columns: 1fr; }
+  .stats-bar { grid-template-columns: repeat(2,1fr); }
+  .hero-trust { gap: 10px; }
+  .trust-div { display: none; }
+  .sec-title { font-size: 24px; }
+  .marka-tags { gap: 5px; }
+  .marka-tag { font-size: 12px; padding: 5px 10px; }
+  .soc-btn { width: 38px; height: 38px; }
+  .nav-cta { padding: 7px 12px; font-size: 11px; }
 }
 
 /* ── ANİMASYON ── */
@@ -446,7 +515,7 @@ img { max-width: 100%; height: auto; display: block; }
     <a href="#hizmetler">Hizmetler</a>
     <a href="#avantajlar">Avantajlar</a>
     <a href="#sehirler">Bölgeler</a>
-    <a href="#blog">Blog</a>
+    <a href="#referanslar">Referanslar</a><a href="#blog">Blog</a>
     <a href="#sss">SSS</a>
     <a href="#iletisim">İletişim</a>
   </div>
@@ -621,6 +690,76 @@ img { max-width: 100%; height: auto; display: block; }
   </div>
 </section>
 
+<!-- ÖNCE / SONRA + VİDEO -->
+<section class="section" id="referanslar" style="background:var(--bg3); border-top:1px solid var(--line); border-bottom:1px solid var(--line);">
+  <div class="fade-in">
+    <div class="sec-tag">Gerçek Çalışmalar</div>
+    <h2 class="sec-title">Öncesi / <em>Sonrası</em></h2>
+    <p class="sec-desc">Hasarlı ve yıpranmış spindle koniğinin yerinde taşlama ile nasıl yenilendiğini görün. Her işlem sonrası µm ölçüm raporu verilir.</p>
+  </div>
+
+  <div class="onceson-grid fade-in">
+    <div class="onceson-card">
+      <div class="onceson-img-wrap">
+        <img src="fotolar/carpmis_spindle.jpg"
+             alt="Çarpmış hasarlı CNC spindle koniği - taşlama öncesi durum"
+             title="Çarpma hasarlı spindle - taşlama öncesi"
+             draggable="false" oncontextmenu="return false;" loading="lazy">
+        <div class="onceson-label onceson-label-red">ÖNCE — Çarpma Hasarı</div>
+      </div>
+      <div class="onceson-body">
+        <h3>Çarpmış Spindle Koniği</h3>
+        <p>CNC tezgah çarpması sonucu oluşan hasar. Konik yüzeyde derin izler, salgı artışı ve hassasiyet kaybı. Tutucu takılmaz hale gelmiş.</p>
+      </div>
+    </div>
+
+    <div class="onceson-card">
+      <div class="onceson-img-wrap">
+        <img src="fotolar/zamanla_korozyon.jpg"
+             alt="Zamanla korozyon ve yıpranma gösteren spindle koniği"
+             title="Korozyon hasarlı spindle - taşlama öncesi"
+             draggable="false" oncontextmenu="return false;" loading="lazy">
+        <div class="onceson-label onceson-label-red">ÖNCE — Korozyon</div>
+      </div>
+      <div class="onceson-body">
+        <h3>Zamanla Yıpranmış Konik</h3>
+        <p>Uzun süreli kullanım ve nem etkisiyle oluşan korozyon. Konik yüzeyde pas ve aşınma, kesici takım performansında düşüş.</p>
+      </div>
+    </div>
+
+    <div class="onceson-card">
+      <div class="onceson-img-wrap">
+        <img src="fotolar/taslanmis.jpg"
+             alt="Yerinde taşlama sonrası temizlenmiş ve hassas spindle koniği"
+             title="Taşlama sonrası spindle - salgısız teslim"
+             draggable="false" oncontextmenu="return false;" loading="lazy">
+        <div class="onceson-label onceson-label-green">SONRA — Taşlandı</div>
+      </div>
+      <div class="onceson-body">
+        <h3>Taşlama Sonrası</h3>
+        <p>Yerinde taşlama işlemi sonrası konik yüzey µm hassasiyetinde yenilendi. Salgı sıfırlandı, tutucu mükemmel oturumu sağlandı.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- YouTube Video -->
+  <div class="video-wrap fade-in">
+    <div class="sec-tag" style="margin-bottom:10px">Canlı İzleyin</div>
+    <h3 style="font-family:var(--font-h);font-size:26px;font-weight:700;color:#fff;text-transform:uppercase;margin-bottom:8px">Yerinde Taşlama <em style="color:var(--gold)">Videosu</em></h3>
+    <p style="font-size:14px;color:var(--txt2);margin-bottom:20px">Gerçek bir CNC tezgahında yerinde spindle konik taşlama işlemini izleyin.</p>
+    <div class="video-container">
+      <iframe
+        src="https://www.youtube.com/embed/Y4xrQqZ48cg?autoplay=1&mute=1&loop=1&playlist=Y4xrQqZ48cg&rel=0&modestbranding=1"
+        title="Yerinde CNC Spindle Konik Taşlama - IQtekno"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen
+        loading="lazy">
+      </iframe>
+    </div>
+  </div>
+</section>
+
 <!-- BLOG -->
 <section class="section blog-wrap" id="blog">
   <div class="fade-in">
@@ -782,6 +921,7 @@ img { max-width: 100%; height: auto; display: block; }
       <a href="#hizmetler">Hizmetler</a>
       <a href="#avantajlar">Avantajlar</a>
       <a href="#sehirler">Bölgeler</a>
+      <a href="#referanslar">Referanslar</a><a href="#referanslar">Referanslar</a>
       <a href="#blog">Blog</a>
       <a href="#sss">SSS</a>
       <a href="#iletisim">İletişim</a>

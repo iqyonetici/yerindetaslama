@@ -28,17 +28,7 @@
     "https://www.youtube.com/channel/UC-XEUyewj3WmvX66GBXvbVA",
     "https://www.facebook.com/groups/iqtekno",
     "https://www.iqtekno.com"
-  ],
-  "hasOfferCatalog": {
-    "@type": "OfferCatalog",
-    "name": "CNC Spindle Taşlama Hizmetleri",
-    "itemListElement": [
-      {"@type":"Offer","itemOffered":{"@type":"Service","name":"CNC Spindle Konik Taşlama"}},
-      {"@type":"Offer","itemOffered":{"@type":"Service","name":"BBT Alın Taşlama"}},
-      {"@type":"Offer","itemOffered":{"@type":"Service","name":"Salgı Kontrolü"}},
-      {"@type":"Offer","itemOffered":{"@type":"Service","name":"Rulman Kontrolü"}}
-    ]
-  }
+  ]
 }
 </script>
 <style>
@@ -48,38 +38,36 @@
   --gold: #F5D800;
   --gold2: #C9A800;
   --gold-dim: rgba(245,216,0,0.12);
-  --gold-border: rgba(245,216,0,0.25);
+  --gold-border: rgba(245,216,0,0.3);
   --bg:    #0a0a0a;
   --bg2:   #111111;
   --bg3:   #181818;
-  --bg4:   #222222;
-  --line:  #1e1e1e;
+  --bg4:   #252525;
+  --line:  #222222;
   --txt:   #f0f0e8;
-  --txt2:  #aaaaaa;
-  --txt3:  #555555;
+  --txt2:  #bbbbbb;
+  --txt3:  #666666;
   --font:  'Barlow', sans-serif;
   --font-h:'Barlow Condensed', sans-serif;
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
-body { font-family: var(--font); background: var(--bg); color: var(--txt); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+body { font-family: var(--font); background: var(--bg); color: var(--txt); line-height: 1.6; -webkit-font-smoothing: antialiased; font-size: 16px; }
 a { color: inherit; text-decoration: none; }
-img { max-width: 100%; height: auto; display: block; border-radius: 4px; }
+img { max-width: 100%; height: auto; display: block; }
 
-/* ─── SCROLLBAR ─── */
 ::-webkit-scrollbar { width: 4px; }
 ::-webkit-scrollbar-track { background: var(--bg2); }
 ::-webkit-scrollbar-thumb { background: var(--gold2); border-radius: 2px; }
 
-/* ─── NAVBAR ─── */
+/* ── NAVBAR ── */
 .navbar {
   position: sticky; top: 0; z-index: 100;
-  background: rgba(10,10,10,0.95);
+  background: rgba(10,10,10,0.97);
   backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--line);
-  padding: 0 40px;
-  height: 60px;
+  padding: 0 40px; height: 62px;
   display: flex; align-items: center; justify-content: space-between;
 }
 .navbar::after {
@@ -88,600 +76,476 @@ img { max-width: 100%; height: auto; display: block; border-radius: 4px; }
 }
 .nav-logo { display: flex; align-items: center; gap: 12px; }
 .logo-sq {
-  width: 40px; height: 40px; background: var(--gold);
-  border-radius: 4px; display: flex; align-items: center; justify-content: center;
-  font-family: var(--font-h); font-size: 18px; font-weight: 700; color: #000; letter-spacing: -1px;
+  width: 42px; height: 42px; background: var(--gold); border-radius: 4px;
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-h); font-size: 19px; font-weight: 700; color: #000; letter-spacing: -1px;
 }
-.nav-brand { line-height: 1.2; }
-.nav-brand strong { display: block; font-size: 14px; font-weight: 600; color: var(--txt); }
-.nav-brand span { font-size: 10px; color: var(--txt3); letter-spacing: 1.5px; text-transform: uppercase; }
+.nav-brand strong { display: block; font-size: 15px; font-weight: 600; color: var(--txt); }
+.nav-brand span { font-size: 11px; color: var(--gold); letter-spacing: 0.5px; }
 .nav-links { display: flex; gap: 28px; }
-.nav-links a { font-size: 12px; font-weight: 500; color: var(--txt2); letter-spacing: 0.3px; transition: color .2s; }
+.nav-links a { font-size: 14px; font-weight: 500; color: var(--txt2); transition: color .2s; }
 .nav-links a:hover { color: var(--gold); }
 .nav-cta {
-  background: var(--gold); color: #000;
-  font-size: 12px; font-weight: 700; letter-spacing: 0.5px;
-  padding: 9px 18px; border-radius: 3px;
-  transition: background .2s, transform .15s;
+  background: var(--gold); color: #000; font-size: 13px; font-weight: 700;
+  padding: 10px 20px; border-radius: 3px; transition: background .2s, transform .15s;
+  white-space: nowrap;
 }
 .nav-cta:hover { background: #ffe600; transform: translateY(-1px); }
 
-/* ─── HERO ─── */
+/* ── HERO ── */
 .hero {
-  min-height: 88vh;
-  background: var(--bg2);
+  min-height: 86vh; background: var(--bg2);
   display: grid; grid-template-columns: 1fr 1fr;
   position: relative; overflow: hidden;
 }
-.hero-noise {
-  position: absolute; inset: 0; pointer-events: none;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
-  opacity: 0.4;
+.hero::before {
+  content: ''; position: absolute; bottom: 0; left: 0; right: 0;
+  height: 1px; background: linear-gradient(90deg, transparent, var(--gold), transparent);
 }
 .hero-left {
-  padding: 80px 60px 80px 60px;
-  display: flex; flex-direction: column; justify-content: center;
+  padding: 72px 56px; display: flex; flex-direction: column; justify-content: center;
   position: relative; z-index: 1;
 }
 .hero-badge {
   display: inline-flex; align-items: center; gap: 8px;
   border: 1px solid var(--gold-border); background: var(--gold-dim);
-  color: var(--gold); font-size: 10px; font-weight: 600;
-  padding: 5px 14px; border-radius: 2px; margin-bottom: 20px;
-  letter-spacing: 1.5px; text-transform: uppercase;
-  width: fit-content;
+  color: var(--gold); font-size: 11px; font-weight: 600;
+  padding: 6px 16px; border-radius: 2px; margin-bottom: 22px;
+  letter-spacing: 1.5px; text-transform: uppercase; width: fit-content;
 }
 .hero-badge::before {
-  content: ''; width: 6px; height: 6px; border-radius: 50%;
+  content: ''; width: 7px; height: 7px; border-radius: 50%;
   background: var(--gold); animation: pulse 2s infinite;
 }
 @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
 .hero h1 {
-  font-family: var(--font-h); font-size: 54px; font-weight: 700;
-  line-height: 1.05; color: #fff; margin-bottom: 16px;
+  font-family: var(--font-h); font-size: 58px; font-weight: 700;
+  line-height: 1.0; color: #fff; margin-bottom: 18px;
   text-transform: uppercase; letter-spacing: -0.5px;
 }
 .hero h1 em { color: var(--gold); font-style: normal; }
-.hero-sub {
-  font-size: 14px; color: var(--txt2); line-height: 1.7;
-  max-width: 440px; margin-bottom: 32px;
-}
-.hero-btns { display: flex; gap: 12px; flex-wrap: wrap; }
+.hero-sub { font-size: 16px; color: var(--txt2); line-height: 1.7; max-width: 460px; margin-bottom: 32px; }
+.hero-btns { display: flex; gap: 14px; flex-wrap: wrap; }
 .btn-primary {
-  background: var(--gold); color: #000;
-  font-size: 13px; font-weight: 700; letter-spacing: 0.5px;
-  padding: 13px 28px; border-radius: 3px; border: none; cursor: pointer;
+  background: var(--gold); color: #000; font-size: 15px; font-weight: 700;
+  padding: 14px 32px; border-radius: 3px; border: none; cursor: pointer;
   transition: background .2s, transform .15s;
 }
 .btn-primary:hover { background: #ffe600; transform: translateY(-2px); }
 .btn-secondary {
-  background: transparent; color: var(--txt);
-  font-size: 13px; font-weight: 500;
-  padding: 13px 28px; border-radius: 3px;
-  border: 1px solid var(--bg4); cursor: pointer;
-  transition: border-color .2s, color .2s;
+  background: transparent; color: var(--txt); font-size: 15px; font-weight: 500;
+  padding: 14px 32px; border-radius: 3px; border: 1px solid var(--bg4); cursor: pointer;
+  transition: border-color .2s, color .2s, background .2s;
 }
-.btn-secondary:hover { border-color: var(--gold); color: var(--gold); }
+.btn-secondary:hover { border-color: var(--gold); color: var(--gold); background: var(--gold-dim); }
 .hero-trust {
-  margin-top: 40px; display: flex; align-items: center; gap: 20px;
+  margin-top: 40px; display: flex; align-items: center; gap: 24px;
   padding-top: 32px; border-top: 1px solid var(--line);
 }
 .trust-item { text-align: center; }
-.trust-n { font-family: var(--font-h); font-size: 26px; font-weight: 700; color: var(--gold); }
-.trust-l { font-size: 10px; color: var(--txt3); text-transform: uppercase; letter-spacing: 1px; }
-.trust-divider { width: 1px; height: 36px; background: var(--line); }
-
+.trust-n { font-family: var(--font-h); font-size: 28px; font-weight: 700; color: var(--gold); }
+.trust-l { font-size: 11px; color: var(--txt3); text-transform: uppercase; letter-spacing: 1px; }
+.trust-div { width: 1px; height: 36px; background: var(--line); }
 .hero-right {
-  position: relative; overflow: hidden;
-  background: var(--bg3);
+  position: relative; overflow: hidden; background: var(--bg3);
   border-left: 1px solid var(--line);
 }
-.hero-right::before {
-  content: ''; position: absolute;
-  top: 0; left: 0; right: 0; bottom: 0;
-  background: linear-gradient(135deg, transparent 60%, rgba(245,216,0,0.06));
-}
-.hero-img-main {
-  width: 100%; height: 100%; object-fit: cover; opacity: 0.85;
-}
-.hero-img-placeholder {
+.hero-right img { width: 100%; height: 100%; object-fit: cover; opacity: 0.85; }
+.hero-right-ph {
   width: 100%; height: 100%; min-height: 500px;
   display: flex; flex-direction: column; align-items: center; justify-content: center;
   gap: 10px; color: var(--txt3);
 }
-.hero-img-placeholder svg { opacity: 0.2; }
-.hero-accent-bar {
-  position: absolute; top: 0; right: 0; width: 4px; height: 100%;
-  background: linear-gradient(180deg, var(--gold), var(--gold2), transparent);
-}
+.hero-accent { position: absolute; top: 0; right: 0; width: 4px; height: 100%; background: linear-gradient(180deg, var(--gold), var(--gold2), transparent); }
 
-/* ─── SECTION BASE ─── */
-.section { padding: 72px 40px; }
-.section-sm { padding: 48px 40px; }
-.section-tag {
+/* ── STATS BAR ── */
+.stats-bar { display: grid; grid-template-columns: repeat(4,1fr); background: var(--bg3); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.stat { padding: 18px; text-align: center; border-right: 1px solid var(--line); }
+.stat:last-child { border-right: none; }
+.stat-n { font-family: var(--font-h); font-size: 26px; font-weight: 700; color: var(--gold); }
+.stat-l { font-size: 12px; color: var(--txt3); margin-top: 3px; letter-spacing: .3px; }
+
+/* ── SECTION ── */
+.section { padding: 56px 40px; }
+.sec-tag {
   display: flex; align-items: center; gap: 10px;
-  font-size: 10px; font-weight: 600; color: var(--gold);
+  font-size: 11px; font-weight: 600; color: var(--gold);
   text-transform: uppercase; letter-spacing: 2px; margin-bottom: 10px;
 }
-.section-tag::before {
-  content: ''; display: block; width: 24px; height: 2px; background: var(--gold);
-}
-.section-title {
-  font-family: var(--font-h); font-size: 36px; font-weight: 700;
-  color: #fff; text-transform: uppercase; letter-spacing: -0.3px;
-  margin-bottom: 8px;
-}
-.section-title em { color: var(--gold); font-style: normal; }
-.section-desc { font-size: 14px; color: var(--txt2); max-width: 560px; line-height: 1.7; }
+.sec-tag::before { content: ''; display: block; width: 24px; height: 2px; background: var(--gold); }
+.sec-title { font-family: var(--font-h); font-size: 38px; font-weight: 700; color: #fff; text-transform: uppercase; margin-bottom: 10px; }
+.sec-title em { color: var(--gold); font-style: normal; }
+.sec-desc { font-size: 15px; color: var(--txt2); max-width: 600px; line-height: 1.7; }
 
-/* ─── HİZMETLER ─── */
-.hizmetler-bg { background: var(--bg2); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+/* ── HİZMETLER ── */
 .hizmet-grid {
-  display: grid; grid-template-columns: repeat(3, 1fr);
+  display: grid; grid-template-columns: repeat(3,1fr);
   gap: 1px; background: var(--line);
-  border: 1px solid var(--line); border-radius: 4px; overflow: hidden;
-  margin-top: 40px;
+  border: 1px solid var(--line); border-radius: 4px; overflow: hidden; margin-top: 36px;
 }
-.hz-card {
+.hz {
   background: var(--bg2); padding: 28px 24px;
-  position: relative; overflow: hidden;
+  position: relative; overflow: hidden; cursor: default;
   transition: background .25s;
-  cursor: default;
 }
-.hz-card::before {
-  content: ''; position: absolute;
-  top: 0; left: 0; width: 3px; height: 0;
+.hz::before {
+  content: ''; position: absolute; top: 0; left: 0; width: 3px; height: 0;
   background: var(--gold); transition: height .3s ease;
 }
-.hz-card:hover { background: var(--bg3); }
-.hz-card:hover::before { height: 100%; }
-.hz-num {
-  font-family: var(--font-h); font-size: 36px; font-weight: 700;
-  color: var(--line); margin-bottom: 12px; line-height: 1;
-  transition: color .25s;
-}
-.hz-card:hover .hz-num { color: var(--gold-border); }
-.hz-title { font-size: 14px; font-weight: 600; color: var(--txt); margin-bottom: 8px; }
-.hz-desc { font-size: 12px; color: var(--txt2); line-height: 1.6; }
+.hz:hover { background: #161616; }
+.hz:hover::before { height: 100%; }
+.hz-num { font-family: var(--font-h); font-size: 40px; font-weight: 700; color: var(--line); margin-bottom: 14px; line-height: 1; transition: color .25s; }
+.hz:hover .hz-num { color: rgba(245,216,0,0.2); }
+.hz-title { font-size: 15px; font-weight: 600; color: var(--txt); margin-bottom: 8px; }
+.hz-desc { font-size: 13px; color: var(--txt2); line-height: 1.6; }
 
-/* ─── NEDEN YERİNDE ─── */
-.neden-grid {
-  display: grid; grid-template-columns: 1fr 1fr;
-  gap: 48px; align-items: center; margin-top: 40px;
-}
-.neden-items { display: flex; flex-direction: column; gap: 0; }
-.neden-item {
-  display: flex; gap: 16px; padding: 20px 0;
-  border-bottom: 1px solid var(--line);
-  transition: background .2s;
-}
-.neden-item:first-child { padding-top: 0; }
-.neden-item:last-child { border-bottom: none; }
-.neden-icon {
-  width: 40px; height: 40px; flex-shrink: 0;
+/* ── AVANTAJLAR ── */
+.avantaj-wrap { background: var(--bg2); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.avantaj-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; margin-top: 36px; }
+.avantaj-list { display: flex; flex-direction: column; }
+.av-item { display: flex; gap: 16px; padding: 20px 0; border-bottom: 1px solid var(--line); }
+.av-item:first-child { padding-top: 0; }
+.av-item:last-child { border-bottom: none; }
+.av-icon {
+  width: 42px; height: 42px; flex-shrink: 0;
   border: 1px solid var(--gold-border); background: var(--gold-dim);
   border-radius: 4px; display: flex; align-items: center; justify-content: center;
-  color: var(--gold); font-size: 16px; margin-top: 2px;
+  font-size: 18px; margin-top: 2px;
+  transition: background .2s, transform .2s;
 }
-.neden-txt h3 { font-size: 14px; font-weight: 600; color: var(--txt); margin-bottom: 4px; }
-.neden-txt p { font-size: 12px; color: var(--txt2); line-height: 1.6; }
-.neden-visual {
-  background: var(--bg3); border: 1px solid var(--line);
-  border-radius: 6px; padding: 32px;
-  display: flex; flex-direction: column; gap: 16px;
-}
-.compare-row { display: flex; flex-direction: column; gap: 6px; }
-.compare-label { font-size: 10px; color: var(--txt3); text-transform: uppercase; letter-spacing: 1px; }
-.compare-bars { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
-.bar-item { }
-.bar-name { font-size: 11px; color: var(--txt2); margin-bottom: 4px; }
-.bar-track { background: var(--bg4); border-radius: 2px; height: 6px; overflow: hidden; }
-.bar-fill { height: 100%; border-radius: 2px; }
-.bar-good { background: var(--gold); }
-.bar-bad { background: var(--txt3); }
-.compare-caption { font-size: 12px; color: var(--txt3); text-align: center; margin-top: 8px; }
+.av-item:hover .av-icon { background: rgba(245,216,0,0.22); transform: scale(1.1); }
+.av-txt h3 { font-size: 15px; font-weight: 600; color: var(--txt); margin-bottom: 5px; }
+.av-txt p { font-size: 13px; color: var(--txt2); line-height: 1.6; }
 
-/* ─── MARKALAR ─── */
-.markalar-bg { background: var(--bg3); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
-.markalar-inner { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
-.marka-label-txt { font-size: 10px; color: var(--txt3); text-transform: uppercase; letter-spacing: 1.5px; white-space: nowrap; }
-.marka-divider { width: 1px; height: 20px; background: var(--line); }
-.marka-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+/* ── NE ZAMAN ── */
+.nezaman-box {
+  background: var(--bg3); border: 1px solid var(--line);
+  border-left: 3px solid var(--gold); border-radius: 4px; padding: 28px;
+}
+.nezaman-box h3 { font-family: var(--font-h); font-size: 22px; font-weight: 700; color: #fff; text-transform: uppercase; margin-bottom: 16px; }
+.nezaman-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+.nezaman-list li {
+  display: flex; align-items: flex-start; gap: 10px;
+  font-size: 14px; color: var(--txt2); line-height: 1.5;
+}
+.nezaman-list li::before { content: '▸'; color: var(--gold); flex-shrink: 0; margin-top: 1px; }
+
+/* ── MARKALAR ── */
+.markalar-wrap { background: var(--bg3); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: 28px 40px; }
+.marka-inner { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
+.marka-label { font-size: 11px; color: var(--txt3); text-transform: uppercase; letter-spacing: 1.5px; white-space: nowrap; }
+.marka-div { width: 1px; height: 20px; background: var(--line); }
+.marka-tags { display: flex; flex-wrap: wrap; gap: 7px; }
 .marka-tag {
   background: var(--bg4); border: 1px solid var(--line);
-  color: var(--txt2); font-size: 12px; font-weight: 500;
-  padding: 6px 14px; border-radius: 2px;
-  transition: border-color .2s, color .2s;
+  color: var(--txt2); font-size: 13px; font-weight: 500;
+  padding: 7px 16px; border-radius: 2px;
+  transition: border-color .2s, color .2s, background .2s;
   cursor: default;
 }
-.marka-tag:hover { border-color: var(--gold); color: var(--gold); }
+.marka-tag:hover { border-color: var(--gold); color: var(--gold); background: var(--gold-dim); }
 
-/* ─── ŞEHİRLER ─── */
-.sehirler-bg { background: var(--bg2); }
-.sehir-grid {
-  display: grid; grid-template-columns: 1fr 1fr;
-  gap: 40px; align-items: start; margin-top: 40px;
-}
-.sehir-list { display: flex; flex-direction: column; gap: 0; }
+/* ── ŞEHİRLER ── */
+.sehir-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start; margin-top: 36px; }
+.sehir-list { display: flex; flex-direction: column; }
 .sehir-item {
   display: flex; align-items: center; justify-content: space-between;
-  padding: 14px 0; border-bottom: 1px solid var(--line);
-  font-size: 14px; color: var(--txt2);
-  transition: color .2s;
+  padding: 15px 0; border-bottom: 1px solid var(--line);
+  font-size: 15px; color: var(--txt2);
+  transition: color .2s, padding-left .2s;
 }
-.sehir-item:hover { color: var(--gold); }
-.sehir-item span { color: var(--txt3); font-size: 11px; }
+.sehir-item:hover { color: var(--gold); padding-left: 6px; }
+.sehir-item span { color: var(--txt3); font-size: 12px; }
 .sehir-note {
   background: var(--bg3); border: 1px solid var(--line);
-  border-left: 3px solid var(--gold);
-  border-radius: 4px; padding: 24px;
+  border-top: 3px solid var(--gold); border-radius: 4px; padding: 28px;
 }
-.sehir-note h3 { font-size: 15px; font-weight: 600; color: var(--txt); margin-bottom: 8px; }
-.sehir-note p { font-size: 13px; color: var(--txt2); line-height: 1.7; }
-.sehir-tel { margin-top: 16px; font-size: 20px; font-weight: 700; color: var(--gold); font-family: var(--font-h); }
+.sehir-note h3 { font-size: 16px; font-weight: 600; color: var(--txt); margin-bottom: 10px; }
+.sehir-note p { font-size: 14px; color: var(--txt2); line-height: 1.7; }
+.sehir-tel { margin-top: 18px; font-size: 22px; font-weight: 700; color: var(--gold); font-family: var(--font-h); }
+.sehir-tel a { color: var(--gold); transition: opacity .2s; }
+.sehir-tel a:hover { opacity: 0.8; }
 
-/* ─── FOTO GALERİ ─── */
-.galeri-bg { background: var(--bg3); border-top: 1px solid var(--line); }
-.galeri-grid {
-  display: grid; grid-template-columns: repeat(4, 1fr);
-  gap: 8px; margin-top: 32px;
+/* ── BLOG ── */
+.blog-wrap { background: var(--bg2); border-top: 1px solid var(--line); }
+.blog-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: 4px; overflow: hidden; margin-top: 36px; }
+.blog-card {
+  background: var(--bg2); overflow: hidden;
+  transition: background .2s; cursor: pointer; display: flex; flex-direction: column;
 }
-.galeri-item {
-  background: var(--bg4); border: 1px dashed var(--line);
-  border-radius: 4px; aspect-ratio: 1;
-  display: flex; flex-direction: column; align-items: center; justify-content: center;
-  gap: 6px; color: var(--txt3); font-size: 11px;
-  overflow: hidden; position: relative;
-  transition: border-color .2s;
+.blog-card:hover { background: #161616; }
+.blog-img {
+  width: 100%; aspect-ratio: 4/3; object-fit: cover;
+  opacity: 0.85; transition: opacity .2s, transform .3s;
 }
-.galeri-item:hover { border-color: var(--gold); }
-.galeri-item img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.9; border-radius: 0; }
-.galeri-caption {
-  position: absolute; bottom: 0; left: 0; right: 0;
-  background: linear-gradient(transparent, rgba(0,0,0,0.8));
-  padding: 20px 10px 10px;
-  font-size: 11px; color: var(--txt2); text-align: center;
+.blog-card:hover .blog-img { opacity: 1; transform: scale(1.03); }
+.blog-img-wrap { overflow: hidden; position: relative; }
+.blog-img-wrap::after {
+  content: ''; position: absolute; bottom: 0; left: 0; right: 0;
+  height: 40%; background: linear-gradient(transparent, rgba(0,0,0,0.6));
+  pointer-events: none;
 }
+.blog-body { padding: 18px; flex: 1; display: flex; flex-direction: column; }
+.blog-date { font-size: 11px; color: var(--txt3); margin-bottom: 8px; }
+.blog-title { font-size: 14px; font-weight: 600; color: var(--txt); line-height: 1.4; margin-bottom: 8px; flex: 1; transition: color .2s; }
+.blog-card:hover .blog-title { color: var(--gold); }
+.blog-link { font-size: 12px; color: var(--gold); display: flex; align-items: center; gap: 4px; margin-top: auto; }
+.blog-link::after { content: '→'; transition: transform .2s; }
+.blog-card:hover .blog-link::after { transform: translateX(4px); }
 
-/* ─── SSS ─── */
-.faq-bg { background: var(--bg2); border-top: 1px solid var(--line); }
-.faq-inner { max-width: 720px; margin-top: 40px; }
+/* ── SSS ── */
+.faq-wrap { background: var(--bg); border-top: 1px solid var(--line); }
+.faq-inner { max-width: 760px; margin-top: 36px; }
 .faq-item { border-bottom: 1px solid var(--line); }
 .faq-item:last-child { border-bottom: none; }
 .faq-q {
   display: flex; align-items: center; justify-content: space-between;
-  padding: 18px 0; cursor: pointer;
-  font-size: 14px; font-weight: 500; color: var(--txt2);
-  transition: color .2s; gap: 16px;
-  list-style: none; user-select: none;
+  padding: 20px 0; cursor: pointer; gap: 16px;
+  font-size: 15px; font-weight: 500; color: var(--txt2);
+  transition: color .2s; user-select: none;
 }
 .faq-q:hover { color: var(--gold); }
 .faq-item.open .faq-q { color: var(--gold); }
 .faq-icon {
-  width: 22px; height: 22px; flex-shrink: 0;
-  border: 1px solid var(--bg4); border-radius: 2px;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 14px; color: var(--txt3);
-  transition: transform .25s, border-color .2s;
+  width: 24px; height: 24px; flex-shrink: 0; border: 1px solid var(--bg4);
+  border-radius: 2px; display: flex; align-items: center; justify-content: center;
+  font-size: 16px; color: var(--txt3); transition: transform .25s, border-color .2s, color .2s;
 }
 .faq-item.open .faq-icon { transform: rotate(45deg); border-color: var(--gold); color: var(--gold); }
 .faq-a {
-  font-size: 13px; color: var(--txt2); line-height: 1.7;
-  padding-bottom: 18px; display: none;
-  border-left: 2px solid var(--gold); padding-left: 16px;
-  margin-left: 4px;
+  font-size: 14px; color: var(--txt2); line-height: 1.7;
+  padding-bottom: 20px; display: none;
+  border-left: 2px solid var(--gold); padding-left: 18px; margin-left: 4px;
 }
 .faq-item.open .faq-a { display: block; }
 
-/* ─── İLETİŞİM ─── */
-.iletisim-bg { background: var(--bg3); border-top: 1px solid var(--line); }
-.iletisim-inner {
-  display: grid; grid-template-columns: 1fr 1fr;
-  gap: 48px; margin-top: 40px;
-}
+/* ── İLETİŞİM ── */
+.iletisim-wrap { background: var(--bg3); border-top: 1px solid var(--line); }
+.iletisim-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; margin-top: 36px; }
 .contact-item { display: flex; gap: 16px; align-items: flex-start; margin-bottom: 24px; }
 .contact-icon {
-  width: 44px; height: 44px; background: var(--gold-dim);
+  width: 46px; height: 46px; background: var(--gold-dim);
   border: 1px solid var(--gold-border); border-radius: 4px;
   display: flex; align-items: center; justify-content: center;
-  color: var(--gold); font-size: 18px; flex-shrink: 0;
+  font-size: 20px; flex-shrink: 0;
+  transition: background .2s, transform .2s;
 }
-.contact-lbl { font-size: 10px; color: var(--txt3); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
-.contact-val { font-size: 16px; font-weight: 600; color: var(--txt); }
-.contact-val a { color: var(--gold); }
-.soc-links { display: flex; gap: 10px; margin-top: 32px; }
+.contact-item:hover .contact-icon { background: rgba(245,216,0,0.22); transform: scale(1.05); }
+.contact-lbl { font-size: 11px; color: var(--txt3); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
+.contact-val { font-size: 17px; font-weight: 600; color: var(--txt); }
+.contact-val a { color: var(--gold); transition: opacity .2s; }
+.contact-val a:hover { opacity: 0.8; }
+.soc-links { display: flex; gap: 10px; margin-top: 28px; }
 .soc-btn {
-  width: 40px; height: 40px; background: var(--bg4);
-  border: 1px solid var(--line); border-radius: 4px;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 18px; color: var(--txt3);
-  transition: border-color .2s, color .2s;
+  width: 42px; height: 42px; background: var(--bg4); border: 1px solid var(--line);
+  border-radius: 4px; display: flex; align-items: center; justify-content: center;
+  font-size: 20px; color: var(--txt3);
+  transition: border-color .2s, color .2s, background .2s, transform .2s;
 }
-.soc-btn:hover { border-color: var(--gold); color: var(--gold); }
-.iletisim-note {
+.soc-btn:hover { border-color: var(--gold); color: var(--gold); background: var(--gold-dim); transform: translateY(-2px); }
+.iletisim-cta {
   background: var(--bg2); border: 1px solid var(--line);
-  border-top: 3px solid var(--gold); border-radius: 4px; padding: 28px;
+  border-top: 3px solid var(--gold); border-radius: 4px; padding: 32px;
   display: flex; flex-direction: column; justify-content: center;
 }
-.iletisim-note h3 { font-family: var(--font-h); font-size: 22px; font-weight: 700; color: #fff; margin-bottom: 12px; text-transform: uppercase; }
-.iletisim-note p { font-size: 13px; color: var(--txt2); line-height: 1.7; margin-bottom: 20px; }
+.iletisim-cta h3 { font-family: var(--font-h); font-size: 26px; font-weight: 700; color: #fff; margin-bottom: 14px; text-transform: uppercase; }
+.iletisim-cta p { font-size: 14px; color: var(--txt2); line-height: 1.7; margin-bottom: 22px; }
 .cta-tel {
   display: inline-block; background: var(--gold); color: #000;
-  font-size: 18px; font-weight: 700; padding: 14px 28px;
+  font-size: 20px; font-weight: 700; padding: 15px 32px;
   border-radius: 3px; font-family: var(--font-h); letter-spacing: 0.5px;
-  transition: background .2s;
+  transition: background .2s, transform .15s;
 }
-.cta-tel:hover { background: #ffe600; }
+.cta-tel:hover { background: #ffe600; transform: translateY(-2px); }
 
-/* ─── FOOTER ─── */
-.footer {
-  background: #070707; border-top: 1px solid var(--line);
-  padding: 32px 40px;
+/* ── INSTAGRAM ── */
+.insta-wrap { background: var(--bg2); border-top: 1px solid var(--line); padding: 40px; text-align: center; }
+.insta-btn {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: linear-gradient(135deg, #833ab4, #fd1d1d, #fcb045);
+  color: #fff; font-size: 15px; font-weight: 600;
+  padding: 13px 28px; border-radius: 6px;
+  transition: opacity .2s, transform .15s;
+  margin-top: 14px;
 }
-.footer-top {
-  display: flex; align-items: center; justify-content: space-between;
-  padding-bottom: 24px; border-bottom: 1px solid var(--line);
-}
+.insta-btn:hover { opacity: 0.9; transform: translateY(-2px); }
+.insta-handle { font-size: 14px; color: var(--txt3); margin-top: 8px; }
+
+/* ── FOOTER ── */
+.footer { background: #070707; border-top: 1px solid var(--line); padding: 32px 40px; }
+.footer-top { display: flex; align-items: center; justify-content: space-between; padding-bottom: 22px; border-bottom: 1px solid var(--line); }
 .footer-logo { display: flex; align-items: center; gap: 10px; }
-.footer-logo-sq {
-  width: 34px; height: 34px; background: var(--gold); border-radius: 3px;
-  display: flex; align-items: center; justify-content: center;
-  font-family: var(--font-h); font-size: 14px; font-weight: 700; color: #000;
-}
-.footer-brand { font-size: 12px; font-weight: 500; color: var(--txt2); }
-.footer-brand small { display: block; font-size: 10px; color: var(--txt3); }
+.footer-logo-sq { width: 36px; height: 36px; background: var(--gold); border-radius: 3px; display: flex; align-items: center; justify-content: center; font-family: var(--font-h); font-size: 15px; font-weight: 700; color: #000; }
+.footer-brand { font-size: 13px; font-weight: 500; color: var(--txt2); }
+.footer-brand small { display: block; font-size: 11px; color: var(--gold); }
 .footer-links { display: flex; gap: 20px; }
-.footer-links a { font-size: 12px; color: var(--txt3); transition: color .2s; }
+.footer-links a { font-size: 13px; color: var(--txt3); transition: color .2s; }
 .footer-links a:hover { color: var(--gold); }
-.footer-bottom {
-  display: flex; align-items: center; justify-content: space-between;
-  padding-top: 20px; font-size: 11px; color: var(--txt3);
-}
+.footer-bottom { display: flex; align-items: center; justify-content: space-between; padding-top: 18px; font-size: 12px; color: var(--txt3); }
 .footer-bottom a { color: var(--gold); }
 
-/* ─── RESPONSIVE ─── */
-@media (max-width: 900px) {
+/* ── RESPONSIVE ── */
+@media (max-width: 960px) {
   .navbar { padding: 0 20px; }
   .nav-links { display: none; }
   .hero { grid-template-columns: 1fr; }
   .hero-right { display: none; }
   .hero-left { padding: 48px 24px; }
-  .hero h1 { font-size: 38px; }
-  .section { padding: 48px 24px; }
-  .section-sm { padding: 32px 24px; }
+  .hero h1 { font-size: 42px; }
+  .section { padding: 40px 20px; }
+  .markalar-wrap { padding: 24px 20px; }
   .hizmet-grid { grid-template-columns: 1fr; }
-  .neden-grid { grid-template-columns: 1fr; }
+  .avantaj-grid { grid-template-columns: 1fr; }
   .sehir-grid { grid-template-columns: 1fr; }
-  .galeri-grid { grid-template-columns: repeat(2,1fr); }
-  .iletisim-inner { grid-template-columns: 1fr; }
+  .blog-grid { grid-template-columns: repeat(2,1fr); }
+  .iletisim-grid { grid-template-columns: 1fr; }
+  .stats-bar { grid-template-columns: repeat(2,1fr); }
   .footer-top { flex-direction: column; gap: 16px; text-align: center; }
   .footer-bottom { flex-direction: column; gap: 8px; text-align: center; }
 }
 
-/* ─── ANIMASYON ─── */
-.fade-in {
-  opacity: 0; transform: translateY(20px);
-  transition: opacity .5s ease, transform .5s ease;
-}
+/* ── ANİMASYON ── */
+.fade-in { opacity: 0; transform: translateY(24px); transition: opacity .55s ease, transform .55s ease; }
 .fade-in.visible { opacity: 1; transform: none; }
 </style>
 </head>
 <body>
 
 <!-- NAVBAR -->
-<nav class="navbar" aria-label="Ana menü">
+<nav class="navbar">
   <div class="nav-logo">
     <div class="logo-sq">IQ</div>
     <div class="nav-brand">
       <strong>Yerinde Taşlama</strong>
-      <span>IQtekno · Yerinde Taşlama Servisi</span>
+      <span>IQtekno · Spindle Servisi</span>
     </div>
   </div>
   <div class="nav-links">
     <a href="#hizmetler">Hizmetler</a>
-    <a href="#neden">Neden Yerinde?</a>
+    <a href="#avantajlar">Avantajlar</a>
     <a href="#sehirler">Bölgeler</a>
+    <a href="#blog">Blog</a>
     <a href="#sss">SSS</a>
     <a href="#iletisim">İletişim</a>
-    <a href="https://www.iqtekno.com" target="_blank" rel="noopener">IQtekno.com</a>
   </div>
   <a href="tel:+905542980504" class="nav-cta">0554 298 05 04</a>
 </nav>
 
 <!-- HERO -->
-<section class="hero" aria-label="Ana başlık">
-  <div class="hero-noise" aria-hidden="true"></div>
+<section class="hero">
   <div class="hero-left">
     <div class="hero-badge">
       <span>24 Saat Hizmet · Makine Sökmeden</span>
     </div>
     <h1>Yerinde<br><em>Spindle</em><br>Taşlama</h1>
     <p class="hero-sub">
-      CNC tezgahınızın spindle koniği hasar gördüğünde veya zamanla yıprandığında,
+      CNC tezgahınızın spindle koniği hasar gördüğünde ya da zamanla yıprandığında,
       makineyi üretim hattından çıkarmadan yerinde taşlama yapıyoruz.
-      Fanuc, Mazak, DMG Mori, Okuma ve tüm CNC markaları — ortalama <strong>3 saatte teslim</strong>.
+      Fanuc, Mazak, DMG Mori, Okuma ve tüm markalar — ortalama <strong>3 saatte teslim</strong>.
     </p>
     <div class="hero-btns">
       <a href="tel:+905542980504" class="btn-primary">Hemen Ara</a>
       <a href="#hizmetler" class="btn-secondary">Hizmetlerimiz</a>
     </div>
     <div class="hero-trust">
-      <div class="trust-item">
-        <div class="trust-n">1000+</div>
-        <div class="trust-l">Taşlama</div>
-      </div>
-      <div class="trust-divider" aria-hidden="true"></div>
-      <div class="trust-item">
-        <div class="trust-n">10+</div>
-        <div class="trust-l">Yıl</div>
-      </div>
-      <div class="trust-divider" aria-hidden="true"></div>
-      <div class="trust-item">
-        <div class="trust-n">7</div>
-        <div class="trust-l">Şehir</div>
-      </div>
-      <div class="trust-divider" aria-hidden="true"></div>
-      <div class="trust-item">
-        <div class="trust-n">24/7</div>
-        <div class="trust-l">Servis</div>
-      </div>
+      <div class="trust-item"><div class="trust-n">1000+</div><div class="trust-l">Taşlama</div></div>
+      <div class="trust-div"></div>
+      <div class="trust-item"><div class="trust-n">10+</div><div class="trust-l">Yıl</div></div>
+      <div class="trust-div"></div>
+      <div class="trust-item"><div class="trust-n">7</div><div class="trust-l">Şehir</div></div>
+      <div class="trust-div"></div>
+      <div class="trust-item"><div class="trust-n">24/7</div><div class="trust-l">Servis</div></div>
     </div>
   </div>
-  <div class="hero-right" aria-hidden="true">
-    <!-- Fotoğraf eklemek için: <img src="hero.jpg" alt="CNC spindle taşlama" class="hero-img-main"> -->
-    <div class="hero-img-placeholder">
-      <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" aria-hidden="true">
-        <rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/>
-        <polyline points="21 15 16 10 5 21"/>
-      </svg>
-      <span>Taşlama fotoğrafı</span>
-      <small style="font-size:10px;color:#333">hero.jpg dosyasını ekleyin</small>
-    </div>
-    <div class="hero-accent-bar" aria-hidden="true"></div>
+  <div class="hero-right">
+    <img src="fotolar/hero_spindle.jpg" alt="CNC spindle yerinde taşlama işlemi" onerror="this.parentElement.innerHTML='<div class=\'hero-right-ph\'><svg width=\'64\' height=\'64\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'currentColor\' stroke-width=\'1\'><rect x=\'3\' y=\'3\' width=\'18\' height=\'18\' rx=\'2\'/><circle cx=\'8.5\' cy=\'8.5\' r=\'1.5\'/><polyline points=\'21 15 16 10 5 21\'/></svg><span style=\'color:#444;font-size:12px\'>hero_spindle.jpg</span></div>'">
+    <div class="hero-accent"></div>
   </div>
 </section>
+
+<!-- STATS -->
+<div class="stats-bar">
+  <div class="stat"><div class="stat-n">1000+</div><div class="stat-l">Taşlama işlemi</div></div>
+  <div class="stat"><div class="stat-n">~3 Saat</div><div class="stat-l">Ortalama süre</div></div>
+  <div class="stat"><div class="stat-n">10+ Yıl</div><div class="stat-l">Tecrübe</div></div>
+  <div class="stat"><div class="stat-n">24/7</div><div class="stat-l">Acil servis</div></div>
+</div>
 
 <!-- HİZMETLER -->
-<section class="section hizmetler-bg" id="hizmetler">
+<section class="section" id="hizmetler" style="background:var(--bg2); border-bottom:1px solid var(--line);">
   <div class="fade-in">
-    <div class="section-tag">Hizmetlerimiz</div>
-    <h2 class="section-title">Ne <em>Yapıyoruz?</em></h2>
-    <p class="section-desc">
-      Spindle koniğinde oluşan hasar veya zamanla meydana gelen deformasyon sonucunda
-      tutucularda salgı oluşur. Bu durum işleme yüzeyini bozar, kesici takım sarfiyatını
-      ve üretim maliyetini artırır.
-    </p>
+    <div class="sec-tag">Hizmetlerimiz</div>
+    <h2 class="sec-title">Ne <em>Yapıyoruz?</em></h2>
+    <p class="sec-desc">Spindle koniğinde oluşan hasar veya zamanla meydana gelen deformasyon sonucunda tutucularda salgı oluşur. Bu durum işleme yüzeyini bozar, kesici takım sarfiyatını ve üretim maliyetini artırır.</p>
   </div>
   <div class="hizmet-grid fade-in">
-    <div class="hz-card">
-      <div class="hz-num">01</div>
-      <h3 class="hz-title">Konik Taşlama (BT / BBT)</h3>
-      <p class="hz-desc">BT30, BT40, BT50, BBT40, BBT50 standartlarında yerinde hassas konik taşlama. Taşlama sonrası salgısız teslim.</p>
-    </div>
-    <div class="hz-card">
-      <div class="hz-num">02</div>
-      <h3 class="hz-title">BBT Alın Taşlama</h3>
-      <p class="hz-desc">BBT standartlı alın yüzey taşlama. Hem konik hem alın yüzey temasını optimize eder.</p>
-    </div>
-    <div class="hz-card">
-      <div class="hz-num">03</div>
-      <h3 class="hz-title">Salgı Kontrolü</h3>
-      <p class="hz-desc">Taşlama öncesi ve sonrası µm hassasiyetinde salgı ölçümü. Ölçüm raporu müşteriye verilir.</p>
-    </div>
-    <div class="hz-card">
-      <div class="hz-num">04</div>
-      <h3 class="hz-title">Rulman Kontrolü</h3>
-      <p class="hz-desc">Yerinde spindle rulman durum testi. Rulman hasarı varsa taşlama öncesi bilgi verilir.</p>
-    </div>
-    <div class="hz-card">
-      <div class="hz-num">05</div>
-      <h3 class="hz-title">Çekme Kuvveti Kontrolü</h3>
-      <p class="hz-desc">Tutucu çekme kuvveti ölçümü ve ayarı. Düşük çekme kuvveti kesici takım kaçmasına neden olur.</p>
-    </div>
-    <div class="hz-card">
-      <div class="hz-num">06</div>
-      <h3 class="hz-title">Hassasiyet Kontrolü</h3>
-      <p class="hz-desc">İşleme hassasiyetinin tam olarak geri kazanımı. Taşlama sonrası µm doğrulama ölçümü yapılır.</p>
-    </div>
+    <div class="hz"><div class="hz-num">01</div><h3 class="hz-title">Konik Taşlama (BT / BBT)</h3><p class="hz-desc">BT30, BT40, BT50, BBT40, BBT50 standartlarında yerinde hassas konik taşlama. Taşlama sonrası salgısız teslim.</p></div>
+    <div class="hz"><div class="hz-num">02</div><h3 class="hz-title">BBT Alın Taşlama</h3><p class="hz-desc">BBT standartlı alın yüzey taşlama. Hem konik hem alın yüzey temasını optimize eder.</p></div>
+    <div class="hz"><div class="hz-num">03</div><h3 class="hz-title">Salgı Kontrolü</h3><p class="hz-desc">Taşlama öncesi ve sonrası µm hassasiyetinde salgı ölçümü. Ölçüm raporu müşteriye verilir.</p></div>
+    <div class="hz"><div class="hz-num">04</div><h3 class="hz-title">Rulman Kontrolü</h3><p class="hz-desc">Yerinde spindle rulman durum testi. Rulman hasarı varsa taşlama öncesi bilgi verilir.</p></div>
+    <div class="hz"><div class="hz-num">05</div><h3 class="hz-title">Çekme Kuvveti Kontrolü</h3><p class="hz-desc">Tutucu çekme kuvveti ölçümü ve ayarı. Düşük çekme kuvveti kesici takım kaçmasına neden olur.</p></div>
+    <div class="hz"><div class="hz-num">06</div><h3 class="hz-title">Hassasiyet Kontrolü</h3><p class="hz-desc">İşleme hassasiyetinin tam olarak geri kazanımı. Taşlama sonrası µm doğrulama ölçümü yapılır.</p></div>
   </div>
 </section>
 
-<!-- NEDEN YERİNDE -->
-<section class="section" id="neden" style="background:var(--bg);">
+<!-- AVANTAJLAR + NE ZAMAN -->
+<section class="section avantaj-wrap" id="avantajlar">
   <div class="fade-in">
-    <div class="section-tag">Neden Yerinde?</div>
-    <h2 class="section-title">Söküp Göndermek <em>Neden Dezavantaj?</em></h2>
+    <div class="sec-tag">Neden Yerinde Taşlama?</div>
+    <h2 class="sec-title">Yerinde Taşlamanın <em>Avantajları</em></h2>
   </div>
-  <div class="neden-grid fade-in">
-    <div class="neden-items">
-      <div class="neden-item">
-        <div class="neden-icon" aria-hidden="true">⏱</div>
-        <div class="neden-txt">
-          <h3>Üretim durumu en az 3 saat</h3>
-          <p>Söküp gönderilen spindle tamiri günler alabilir. Yerinde taşlamada makine ortalama 3 saatte üretime döner.</p>
+  <div class="avantaj-grid fade-in">
+    <div class="avantaj-list">
+      <div class="av-item">
+        <div class="av-icon">⏱</div>
+        <div class="av-txt">
+          <h3>Hızlı çözüm — ortalama 3 saat</h3>
+          <p>Fener mili sökülmeden ortalama 3 saat içerisinde hızlı çözüm sağlanır. Söküp gönderilen spindle tamiri günler alabilir.</p>
         </div>
       </div>
-      <div class="neden-item">
-        <div class="neden-icon" aria-hidden="true">💰</div>
-        <div class="neden-txt">
-          <h3>Çok daha ekonomik</h3>
-          <p>Nakliye, söküm montaj işçiliği ve bekleme süresi yoktur. Yerinde taşlama toplam maliyeti büyük ölçüde düşürür.</p>
+      <div class="av-item">
+        <div class="av-icon">💰</div>
+        <div class="av-txt">
+          <h3>Karlılık ve ekonomi</h3>
+          <p>Spindle konik taşlama ile fener mili sökme ve takma maliyetinden karlılık sağlanır. Nakliye ve bekleme süresi yoktur.</p>
         </div>
       </div>
-      <div class="neden-item">
-        <div class="neden-icon" aria-hidden="true">🎯</div>
-        <div class="neden-txt">
-          <h3>Makine hassasiyeti korunur</h3>
-          <p>Söküm ve montaj sırasında oluşabilecek ek hasar riski yoktur. Makine orijinal kalibrasyonunda kalır.</p>
+      <div class="av-item">
+        <div class="av-icon">🎯</div>
+        <div class="av-txt">
+          <h3>Hassasiyet artar</h3>
+          <p>Rulman değişimi gerektirmeyen işlemlerde CNC üzerinde yerinde taşlama ile montajlama esnasında olabilecek salgılar engellenir, hassasiyet artar.</p>
         </div>
       </div>
-      <div class="neden-item">
-        <div class="neden-icon" aria-hidden="true">📋</div>
-        <div class="neden-txt">
+      <div class="av-item">
+        <div class="av-icon">📋</div>
+        <div class="av-txt">
           <h3>Anlık ölçüm raporu</h3>
           <p>İşlem öncesi ve sonrası µm hassasiyetinde ölçüm yapılır. Sonuçlar anında müşteriye raporlanır.</p>
         </div>
       </div>
     </div>
-    <div class="neden-visual" aria-label="Yerinde taşlama vs söküp gönderme karşılaştırması">
-      <p style="font-size:12px;color:var(--txt3);text-transform:uppercase;letter-spacing:1px;margin-bottom:16px;">Karşılaştırma</p>
-      <div class="compare-row">
-        <div class="compare-label">Süre</div>
-        <div class="compare-bars">
-          <div class="bar-item">
-            <div class="bar-name" style="color:var(--gold)">Yerinde taşlama</div>
-            <div class="bar-track"><div class="bar-fill bar-good" style="width:25%"></div></div>
-            <div style="font-size:11px;color:var(--gold);margin-top:2px">~3 saat</div>
-          </div>
-          <div class="bar-item">
-            <div class="bar-name">Söküp gönderme</div>
-            <div class="bar-track"><div class="bar-fill bar-bad" style="width:90%"></div></div>
-            <div style="font-size:11px;color:var(--txt3);margin-top:2px">3–7 gün</div>
-          </div>
-        </div>
-      </div>
-      <div class="compare-row" style="margin-top:16px">
-        <div class="compare-label">Maliyet</div>
-        <div class="compare-bars">
-          <div class="bar-item">
-            <div class="bar-name" style="color:var(--gold)">Yerinde taşlama</div>
-            <div class="bar-track"><div class="bar-fill bar-good" style="width:35%"></div></div>
-            <div style="font-size:11px;color:var(--gold);margin-top:2px">Düşük</div>
-          </div>
-          <div class="bar-item">
-            <div class="bar-name">Söküp gönderme</div>
-            <div class="bar-track"><div class="bar-fill bar-bad" style="width:85%"></div></div>
-            <div style="font-size:11px;color:var(--txt3);margin-top:2px">Yüksek</div>
-          </div>
-        </div>
-      </div>
-      <div class="compare-row" style="margin-top:16px">
-        <div class="compare-label">Üretim kaybı</div>
-        <div class="compare-bars">
-          <div class="bar-item">
-            <div class="bar-name" style="color:var(--gold)">Yerinde taşlama</div>
-            <div class="bar-track"><div class="bar-fill bar-good" style="width:15%"></div></div>
-            <div style="font-size:11px;color:var(--gold);margin-top:2px">Minimum</div>
-          </div>
-          <div class="bar-item">
-            <div class="bar-name">Söküp gönderme</div>
-            <div class="bar-track"><div class="bar-fill bar-bad" style="width:95%"></div></div>
-            <div style="font-size:11px;color:var(--txt3);margin-top:2px">Çok yüksek</div>
-          </div>
-        </div>
-      </div>
+    <div class="nezaman-box">
+      <h3>Ne Zaman Taşlama Gerekir?</h3>
+      <ul class="nezaman-list">
+        <li>İş parçası yüzeyinde dalgalanma veya istenmeyen izler varsa</li>
+        <li>İş parçasında hassasiyet veya tekrarlanabilirlik bozulduğunda</li>
+        <li>Tutucu üzerinde izler, renk değişimi ve hassasiyet bozulmalarında</li>
+        <li>Bara takımlarının salgılı dönerek farklı çaplarda hassasiyet yakalanamadığında</li>
+        <li>Frezelerin işleme yüzeylerinde salgılı dönerek yüzeyden çok veya az kestiğinde</li>
+        <li>Matkapların salgılı dönerek kırıldığında veya yetersiz iş parçası yaptığında</li>
+        <li>Salgıdan dolayı balans ile rulmanların bozulduğunda</li>
+        <li>Kesici takımların erken körelmesi, kırılması veya yetersiz üretim yapması durumunda</li>
+      </ul>
     </div>
   </div>
 </section>
 
 <!-- MARKALAR -->
-<section class="section-sm markalar-bg fade-in">
-  <div style="padding:0 0 16px">
-    <div class="section-tag">Uyumlu CNC Markaları</div>
-  </div>
-  <div class="markalar-inner">
-    <span class="marka-label-txt">Hizmet verdiğimiz markalar</span>
-    <div class="marka-divider" aria-hidden="true"></div>
+<div class="markalar-wrap fade-in">
+  <div class="marka-inner">
+    <span class="marka-label">Hizmet verdiğimiz CNC markaları</span>
+    <div class="marka-div"></div>
     <div class="marka-tags">
       <span class="marka-tag">Fanuc</span>
       <span class="marka-tag">Mazak</span>
@@ -698,173 +562,181 @@ img { max-width: 100%; height: auto; display: block; border-radius: 4px; }
       <span class="marka-tag">Tüm markalar ✓</span>
     </div>
   </div>
-</section>
+</div>
 
 <!-- ŞEHİRLER -->
-<section class="section sehirler-bg" id="sehirler">
+<section class="section" id="sehirler" style="background:var(--bg);">
   <div class="fade-in">
-    <div class="section-tag">Hizmet Bölgeleri</div>
-    <h2 class="section-title">Nereye <em>Geliyoruz?</em></h2>
-    <p class="section-desc">Türkiye genelinde hizmet veriyoruz. Aşağıdaki şehirler başta olmak üzere her bölgeye ulaşıyoruz.</p>
+    <div class="sec-tag">Hizmet Bölgeleri</div>
+    <h2 class="sec-title">Nereye <em>Geliyoruz?</em></h2>
+    <p class="sec-desc">Türkiye genelinde hizmet veriyoruz. Aşağıdaki şehirler başta olmak üzere her bölgeye ulaşıyoruz.</p>
   </div>
   <div class="sehir-grid fade-in">
-    <div class="sehir-list" role="list">
-      <div class="sehir-item" role="listitem">İstanbul <span>OSTİM, İMES, Tuzla OSB dahil</span></div>
-      <div class="sehir-item" role="listitem">Ankara <span>OSTİM, Ostim OSB dahil</span></div>
-      <div class="sehir-item" role="listitem">Bursa <span>BURSA OSB, Nilüfer dahil</span></div>
-      <div class="sehir-item" role="listitem">İzmir <span>ESBAŞ, Kemalpaşa OSB dahil</span></div>
-      <div class="sehir-item" role="listitem">İzmit / Kocaeli <span>KOSBI dahil</span></div>
-      <div class="sehir-item" role="listitem">Sakarya <span>SAKAR OSB dahil</span></div>
-      <div class="sehir-item" role="listitem">Tekirdağ <span>Çorlu OSB dahil</span></div>
-      <div class="sehir-item" role="listitem" style="color:var(--gold)">Türkiye Geneli <span>Talep üzerine</span></div>
+    <div class="sehir-list">
+      <div class="sehir-item">İstanbul <span>OSTİM, İMES, Tuzla OSB dahil</span></div>
+      <div class="sehir-item">Ankara <span>OSTİM, Ostim OSB dahil</span></div>
+      <div class="sehir-item">Bursa <span>BURSA OSB, Nilüfer dahil</span></div>
+      <div class="sehir-item">İzmir <span>ESBAŞ, Kemalpaşa OSB dahil</span></div>
+      <div class="sehir-item">İzmit / Kocaeli <span>KOSBI dahil</span></div>
+      <div class="sehir-item">Sakarya <span>SAKAR OSB dahil</span></div>
+      <div class="sehir-item">Tekirdağ <span>Çorlu OSB dahil</span></div>
+      <div class="sehir-item" style="color:var(--gold)">Türkiye Geneli <span>Talep üzerine</span></div>
     </div>
     <div class="sehir-note">
       <h3>Acil Durum?</h3>
       <p>Spindle arızası üretimi durduruyorsa beklemeden arayın. 24 saat, 7 gün servis veriyoruz. Türkiye'nin her yerine ulaşıyoruz.</p>
-      <div class="sehir-tel">
-        <a href="tel:+905542980504" style="color:var(--gold)">0554 298 05 04</a>
-      </div>
-      <p style="font-size:11px;color:var(--txt3);margin-top:8px">info@iqtekno.com</p>
+      <div class="sehir-tel"><a href="tel:+905542980504">0554 298 05 04</a></div>
+      <p style="font-size:12px;color:var(--txt3);margin-top:10px">info@iqtekno.com</p>
     </div>
   </div>
 </section>
 
-<!-- GALERİ -->
-<section class="section galeri-bg" id="galeri">
+<!-- BLOG -->
+<section class="section blog-wrap" id="blog">
   <div class="fade-in">
-    <div class="section-tag">Referans Çalışmalar</div>
-    <h2 class="section-title">Öncesi / <em>Sonrası</em></h2>
-    <p class="section-desc">Gerçekleştirdiğimiz taşlama işlemlerinden örnekler. Her işlem sonrası µm ölçüm raporu verilir.</p>
+    <div class="sec-tag">Blog &amp; Teknik İçerikler</div>
+    <h2 class="sec-title">Bilgi <em>Merkezi</em></h2>
+    <p class="sec-desc">Spindle taşlama, fener mili bakımı ve CNC tezgah bakımı hakkında teknik yazılar.</p>
   </div>
-  <div class="galeri-grid fade-in">
-    <!-- Fotoğraf eklemek için: <img src="fotolar/once1.jpg" alt="Taşlama öncesi spindle"> yerine koyun -->
-    <div class="galeri-item">
-      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
-      <span>once1.jpg</span>
+  <div class="blog-grid fade-in">
+    <div class="blog-card" onclick="window.open('https://www.iqtekno.com/post/bbt-i-le-bt-tutucu-arasindaki-fark-nedi-r','_blank')">
+      <div class="blog-img-wrap">
+        <img class="blog-img" src="fotolar/blog1_bbt_bt_fark.jpg" alt="BBT ile BT tutucu farkı" onerror="this.style.display='none'">
+      </div>
+      <div class="blog-body">
+        <div class="blog-date">26 Ara 2022</div>
+        <div class="blog-title">BBT ile BT Tutucu Arasındaki Fark Nedir?</div>
+        <div class="blog-link">Devamını oku</div>
+      </div>
     </div>
-    <div class="galeri-item">
-      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
-      <span>sonra1.jpg</span>
+    <div class="blog-card" onclick="window.open('https://www.iqtekno.com/post/rulmanlarda-salgi-balans','_blank')">
+      <div class="blog-img-wrap">
+        <img class="blog-img" src="fotolar/blog2_rulman_salgi.jpg" alt="Rulmanlarda salgı ve balans" onerror="this.style.display='none'">
+      </div>
+      <div class="blog-body">
+        <div class="blog-date">18 Kas 2021</div>
+        <div class="blog-title">Rulmanlarda Salgı veya Balans Var mı?</div>
+        <div class="blog-link">Devamını oku</div>
+      </div>
     </div>
-    <div class="galeri-item">
-      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
-      <span>olcum1.jpg</span>
+    <div class="blog-card" onclick="window.open('https://www.iqtekno.com/post/hangidurumdaspindle-fenermili-taşlanır','_blank')">
+      <div class="blog-img-wrap">
+        <img class="blog-img" src="fotolar/blog3_spindle_taslama.jpg" alt="Hangi durumda spindle taşlanır" onerror="this.style.display='none'">
+      </div>
+      <div class="blog-body">
+        <div class="blog-date">18 Kas 2021</div>
+        <div class="blog-title">Hangi Durumda Spindle (Fener Mili) Taşlanır?</div>
+        <div class="blog-link">Devamını oku</div>
+      </div>
     </div>
-    <div class="galeri-item">
-      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
-      <span>islem1.jpg</span>
+    <div class="blog-card" onclick="window.open('https://www.iqtekno.com/post/konikyüzeyioturuyormu','_blank')">
+      <div class="blog-img-wrap">
+        <img class="blog-img" src="fotolar/blog4_konik_kontrol.jpg" alt="Konik temas yüzeyi kontrolü" onerror="this.style.display='none'">
+      </div>
+      <div class="blog-body">
+        <div class="blog-date">18 Kas 2021</div>
+        <div class="blog-title">Konik Temas Yüzeyi Nasıl Kontrol Edilir?</div>
+        <div class="blog-link">Devamını oku</div>
+      </div>
     </div>
   </div>
 </section>
 
 <!-- SSS -->
-<section class="section faq-bg" id="sss">
+<section class="section faq-wrap" id="sss">
   <div class="fade-in">
-    <div class="section-tag">Sık Sorulan Sorular</div>
-    <h2 class="section-title">Aklınızdaki <em>Sorular</em></h2>
+    <div class="sec-tag">Sık Sorulan Sorular</div>
+    <h2 class="sec-title">Aklınızdaki <em>Sorular</em></h2>
   </div>
-  <div class="faq-inner fade-in" role="list">
-    <div class="faq-item open" role="listitem">
-      <div class="faq-q" tabindex="0" role="button" aria-expanded="true">
-        Spindle taşlama ne kadar sürer?
-        <div class="faq-icon" aria-hidden="true">+</div>
-      </div>
+  <div class="faq-inner fade-in">
+    <div class="faq-item open">
+      <div class="faq-q" tabindex="0">Spindle taşlama ne kadar sürer?<div class="faq-icon">+</div></div>
       <div class="faq-a">Ortalama 3 saattir. Makine yerinde taşlandığı için söküm ve montaj süresi yoktur. İşlem öncesi salgı ölçümü, taşlama ve sonrası kontrol ölçümü dahil toplam süre genellikle 3 saati geçmez. Acil durumlarda gece de hizmet verilmektedir.</div>
     </div>
-    <div class="faq-item" role="listitem">
-      <div class="faq-q" tabindex="0" role="button" aria-expanded="false">
-        Makineyi sökmem gerekiyor mu?
-        <div class="faq-icon" aria-hidden="true">+</div>
-      </div>
+    <div class="faq-item">
+      <div class="faq-q" tabindex="0">Makineyi sökmem gerekiyor mu?<div class="faq-icon">+</div></div>
       <div class="faq-a">Hayır. Tüm işlem makine üzerinde yapılır. Makine üretim hattından çıkmaz. Spindle taşlama makinamız CNC tezgahın yanına kurularak işlem gerçekleştirilir.</div>
     </div>
-    <div class="faq-item" role="listitem">
-      <div class="faq-q" tabindex="0" role="button" aria-expanded="false">
-        Hangi CNC markalarına hizmet veriyorsunuz?
-        <div class="faq-icon" aria-hidden="true">+</div>
-      </div>
+    <div class="faq-item">
+      <div class="faq-q" tabindex="0">Hangi CNC markalarına hizmet veriyorsunuz?<div class="faq-icon">+</div></div>
       <div class="faq-a">Fanuc, Mazak, DMG Mori, Okuma, Haas, Doosan, Brother, Makino, Siemens, Mitsubishi ve diğer tüm CNC tezgah markalarına hizmet veriyoruz. Spindle standardı BT veya BBT olan her tezgah için hizmet mevcuttur.</div>
     </div>
-    <div class="faq-item" role="listitem">
-      <div class="faq-q" tabindex="0" role="button" aria-expanded="false">
-        Taşlama için spindle rulmanları sağlam mı olmalı?
-        <div class="faq-icon" aria-hidden="true">+</div>
-      </div>
+    <div class="faq-item">
+      <div class="faq-q" tabindex="0">Taşlama için spindle rulmanları sağlam mı olmalı?<div class="faq-icon">+</div></div>
       <div class="faq-a">Evet. Spindle konik taşlama işleminin yapılabilmesi için rulmanların hasarsız ve takım tutucu çekmesi sisteminin normal çalışır durumda olması gerekmektedir. İşlem öncesi rulman kontrolü yapılır, sorun varsa bilgi verilir.</div>
     </div>
-    <div class="faq-item" role="listitem">
-      <div class="faq-q" tabindex="0" role="button" aria-expanded="false">
-        Spindle konik taşlama ne zaman gerekir?
-        <div class="faq-icon" aria-hidden="true">+</div>
-      </div>
-      <div class="faq-a">Tezgahta çarpışma sonrası oluşan hasar, zamanla yıpranma, tutucularda salgı artışı, işleme yüzeyinde bozulma veya kesici takım sarfiyatında ani artış görüldüğünde spindle taşlama gereklidir.</div>
+    <div class="faq-item">
+      <div class="faq-q" tabindex="0">BBT ile BT tutucu arasındaki fark nedir?<div class="faq-icon">+</div></div>
+      <div class="faq-a">BBT tutucular hem konik hem de alın yüzeyi temas ederken, BT tutucular sadece konik yüzeyi temas etmektedir. BBT tutucular daha yüksek rijitlik sağlar. İki tutucu çeşidinde de avantajları ve dezavantajları vardır.</div>
     </div>
-    <div class="faq-item" role="listitem">
-      <div class="faq-q" tabindex="0" role="button" aria-expanded="false">
-        Hangi şehirlere geliyorsunuz?
-        <div class="faq-icon" aria-hidden="true">+</div>
-      </div>
+    <div class="faq-item">
+      <div class="faq-q" tabindex="0">Hangi şehirlere geliyorsunuz?<div class="faq-icon">+</div></div>
       <div class="faq-a">İstanbul, Ankara, Bursa, İzmir, İzmit, Sakarya ve Tekirdağ başta olmak üzere Türkiye genelinde hizmet veriyoruz. 2014'ten bu yana Türkiye'nin dört bir yanında 1000'den fazla taşlama işlemi gerçekleştirdik.</div>
     </div>
   </div>
 </section>
 
 <!-- İLETİŞİM -->
-<section class="section iletisim-bg" id="iletisim">
+<section class="section iletisim-wrap" id="iletisim">
   <div class="fade-in">
-    <div class="section-tag">İletişim</div>
-    <h2 class="section-title">Bize <em>Ulaşın</em></h2>
+    <div class="sec-tag">İletişim</div>
+    <h2 class="sec-title">Bize <em>Ulaşın</em></h2>
   </div>
-  <div class="iletisim-inner fade-in">
+  <div class="iletisim-grid fade-in">
     <div>
       <div class="contact-item">
-        <div class="contact-icon" aria-hidden="true">📞</div>
-        <div>
-          <div class="contact-lbl">Telefon</div>
-          <div class="contact-val"><a href="tel:+905542980504">0554 298 05 04</a></div>
-        </div>
+        <div class="contact-icon">📞</div>
+        <div><div class="contact-lbl">Telefon</div><div class="contact-val"><a href="tel:+905542980504">0554 298 05 04</a></div></div>
       </div>
       <div class="contact-item">
-        <div class="contact-icon" aria-hidden="true">✉️</div>
-        <div>
-          <div class="contact-lbl">E-posta</div>
-          <div class="contact-val"><a href="mailto:info@iqtekno.com">info@iqtekno.com</a></div>
-        </div>
+        <div class="contact-icon">✉️</div>
+        <div><div class="contact-lbl">E-posta</div><div class="contact-val"><a href="mailto:info@iqtekno.com">info@iqtekno.com</a></div></div>
       </div>
       <div class="contact-item">
-        <div class="contact-icon" aria-hidden="true">🌐</div>
-        <div>
-          <div class="contact-lbl">Web</div>
-          <div class="contact-val"><a href="https://www.iqtekno.com" target="_blank" rel="noopener">www.iqtekno.com</a></div>
-        </div>
+        <div class="contact-icon">🌐</div>
+        <div><div class="contact-lbl">Web</div><div class="contact-val"><a href="https://www.iqtekno.com" target="_blank" rel="noopener">www.iqtekno.com</a></div></div>
       </div>
       <div class="contact-item">
-        <div class="contact-icon" aria-hidden="true">📍</div>
-        <div>
-          <div class="contact-lbl">Hizmet bölgesi</div>
-          <div class="contact-val" style="font-size:13px">Türkiye geneli · 2014'ten beri</div>
-        </div>
+        <div class="contact-icon">📍</div>
+        <div><div class="contact-lbl">Hizmet bölgesi</div><div class="contact-val" style="font-size:14px">Türkiye geneli · 2014'ten beri</div></div>
       </div>
-      <div class="soc-links" aria-label="Sosyal medya">
+      <div class="soc-links">
         <a href="https://www.instagram.com/iq.tekno" class="soc-btn" aria-label="Instagram" target="_blank" rel="noopener">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
         </a>
         <a href="https://www.youtube.com/channel/UC-XEUyewj3WmvX66GBXvbVA" class="soc-btn" aria-label="YouTube" target="_blank" rel="noopener">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46A2.78 2.78 0 0 0 1.46 6.42 29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.95A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="currentColor" stroke="none"/></svg>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46A2.78 2.78 0 0 0 1.46 6.42 29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.95A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="currentColor" stroke="none"/></svg>
         </a>
         <a href="https://www.facebook.com/groups/iqtekno" class="soc-btn" aria-label="Facebook" target="_blank" rel="noopener">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+        </a>
+        <a href="https://twitter.com/IqTekno" class="soc-btn" aria-label="Twitter/X" target="_blank" rel="noopener">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4l16 16M4 20L20 4"/></svg>
+        </a>
+        <a href="https://www.linkedin.com/in/caner-demiral-51696890/" class="soc-btn" aria-label="LinkedIn" target="_blank" rel="noopener">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
         </a>
       </div>
     </div>
-    <div class="iletisim-note">
+    <div class="iletisim-cta">
       <h3>Hızlı Çözüm İçin Hemen Arayın</h3>
       <p>Spindle arızası üretimi durduruyorsa zaman kaybetmeyin. 24 saat, 7 gün hizmetinizdeyiz. İstanbul, Ankara, Bursa, İzmir ve çevresi — Türkiye geneline hizmet veriyoruz.</p>
       <a href="tel:+905542980504" class="cta-tel">0554 298 05 04</a>
-      <p style="font-size:11px;color:var(--txt3);margin-top:16px">2014'ten bu yana 1000'den fazla taşlama işlemi · IQtekno bünyesinde</p>
+      <p style="font-size:12px;color:var(--txt3);margin-top:16px">2014'ten bu yana 1000'den fazla taşlama işlemi · IQtekno bünyesinde</p>
     </div>
   </div>
 </section>
+
+<!-- INSTAGRAM -->
+<div class="insta-wrap fade-in">
+  <div class="sec-tag" style="justify-content:center">Sosyal Medya</div>
+  <p style="font-size:15px;color:var(--txt2);margin-top:6px">Taşlama videolarımızı ve teknik içerikleri Instagram'dan takip edin</p>
+  <a href="https://www.instagram.com/iq.tekno" target="_blank" rel="noopener" class="insta-btn">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+    @iq.tekno
+  </a>
+  <div class="insta-handle">instagram.com/iq.tekno</div>
+</div>
 
 <!-- FOOTER -->
 <footer class="footer">
@@ -878,8 +750,9 @@ img { max-width: 100%; height: auto; display: block; border-radius: 4px; }
     </div>
     <div class="footer-links">
       <a href="#hizmetler">Hizmetler</a>
-      <a href="#neden">Neden Yerinde?</a>
+      <a href="#avantajlar">Avantajlar</a>
       <a href="#sehirler">Bölgeler</a>
+      <a href="#blog">Blog</a>
       <a href="#sss">SSS</a>
       <a href="#iletisim">İletişim</a>
       <a href="https://www.iqtekno.com" target="_blank" rel="noopener">IQtekno.com</a>
@@ -892,25 +765,21 @@ img { max-width: 100%; height: auto; display: block; border-radius: 4px; }
 </footer>
 
 <script>
-// SSS aç/kapat
+// SSS
 document.querySelectorAll('.faq-q').forEach(q => {
   q.addEventListener('click', () => {
     const item = q.closest('.faq-item');
     const isOpen = item.classList.contains('open');
     document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
     if (!isOpen) item.classList.add('open');
-    q.setAttribute('aria-expanded', !isOpen);
   });
-  q.addEventListener('keydown', e => {
-    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); q.click(); }
-  });
+  q.addEventListener('keydown', e => { if (e.key==='Enter'||e.key===' '){e.preventDefault();q.click();} });
 });
-
-// Scroll animasyonu
-const observer = new IntersectionObserver(entries => {
+// Scroll animasyon
+const obs = new IntersectionObserver(entries => {
   entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+}, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
+document.querySelectorAll('.fade-in').forEach(el => obs.observe(el));
 </script>
 </body>
 </html>

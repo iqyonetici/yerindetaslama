@@ -158,35 +158,76 @@ img { max-width: 100%; height: auto; display: block; }
   position: relative; overflow: hidden; background: var(--bg3);
   border-left: 1px solid var(--line);
 }
-.hero-img-reveal {
-  width: 100%; height: 100%; position: absolute; inset: 0;
-  clip-path: inset(0 100% 0 0);
-  animation: revealRight 1.1s cubic-bezier(0.77,0,0.18,1) 0.3s forwards;
+
+/* ── COMPARE SLIDER ── */
+.compare-slider {
+  position: absolute; inset: 0;
+  cursor: ew-resize; user-select: none;
+  -webkit-user-select: none;
 }
-@keyframes revealRight {
-  0%   { clip-path: inset(0 100% 0 0); }
-  100% { clip-path: inset(0 0% 0 0); }
+.compare-after, .compare-before {
+  position: absolute; inset: 0; overflow: hidden;
 }
-.hero-img-reveal img {
+.compare-after img, .compare-before img {
   width: 100%; height: 100%; object-fit: cover;
-  opacity: 0; animation: imgFade 0.6s ease 0.5s forwards;
-  user-select: none; pointer-events: none;
-  -webkit-user-drag: none;
+  pointer-events: none; -webkit-user-drag: none;
+  display: block;
 }
-@keyframes imgFade {
-  0%   { opacity: 0; }
-  100% { opacity: 0.88; }
+.compare-before {
+  clip-path: inset(0 50% 0 0);
+  transition: clip-path 0s;
 }
-.hero-img-overlay {
-  position: absolute; inset: 0; pointer-events: none;
-  background: linear-gradient(135deg, rgba(10,10,10,0.35) 0%, transparent 60%);
+.compare-label {
+  position: absolute; top: 16px;
+  font-size: 11px; font-weight: 700;
+  padding: 4px 12px; border-radius: 2px;
+  letter-spacing: 1px; text-transform: uppercase;
+  z-index: 3;
 }
+.compare-label-before {
+  left: 12px;
+  background: rgba(200,40,40,0.88); color: #fff;
+}
+.compare-label-after {
+  right: 12px;
+  background: rgba(29,158,117,0.88); color: #fff;
+}
+.compare-handle {
+  position: absolute; top: 0; bottom: 0;
+  left: 50%; transform: translateX(-50%);
+  width: 44px; z-index: 10;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  pointer-events: none;
+}
+.compare-line {
+  position: absolute; top: 0; bottom: 0; left: 50%;
+  width: 2px; background: #fff;
+  transform: translateX(-50%);
+  box-shadow: 0 0 8px rgba(0,0,0,0.5);
+}
+.compare-btn {
+  width: 44px; height: 44px; border-radius: 50%;
+  background: #fff; display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.4);
+  color: #000; gap: 0; z-index: 2; position: relative;
+  transition: transform .15s;
+}
+.compare-slider:active .compare-btn { transform: scale(1.1); }
+.compare-info {
+  position: absolute; bottom: 14px; left: 50%; transform: translateX(-50%);
+  background: rgba(0,0,0,0.55); color: rgba(255,255,255,0.8);
+  font-size: 11px; padding: 4px 14px; border-radius: 20px;
+  letter-spacing: 0.5px; white-space: nowrap; z-index: 5;
+  animation: fadeInfo 3s ease 2s forwards;
+}
+@keyframes fadeInfo { 0%{opacity:1} 100%{opacity:0} }
+
 .hero-right-ph {
   width: 100%; height: 100%; min-height: 500px;
   display: flex; flex-direction: column; align-items: center; justify-content: center;
   gap: 10px; color: var(--txt3);
 }
-.hero-accent { position: absolute; top: 0; right: 0; width: 4px; height: 100%; background: linear-gradient(180deg, var(--gold), var(--gold2), transparent); z-index: 2; }
+.hero-accent { position: absolute; top: 0; right: 0; width: 4px; height: 100%; background: linear-gradient(180deg, var(--gold), var(--gold2), transparent); z-index: 20; }
 
 /* ── STATS BAR ── */
 .stats-bar { display: grid; grid-template-columns: repeat(4,1fr); background: var(--bg3); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
@@ -557,16 +598,39 @@ img { max-width: 100%; height: auto; display: block; }
     </div>
   </div>
   <div class="hero-right" oncontextmenu="return false;" ondragstart="return false;">
-    <div class="hero-img-reveal">
-      <img src="fotolar/hero_spindle.jpg" 
-           alt="Yerinde CNC spindle konik taşlama işlemi - fener mili taşlama servisi"
-           title="Yerinde Spindle Taşlama - IQtekno"
-           draggable="false"
-           oncontextmenu="return false;"
-           loading="eager">
+    <div class="compare-slider" id="compareSlider">
+      <!-- SONRA (arka plan) -->
+      <div class="compare-after">
+        <img src="fotolar/taslanmis.jpg"
+             alt="Taşlama sonrası temiz spindle koniği"
+             draggable="false" oncontextmenu="return false;" loading="eager">
+        <div class="compare-label compare-label-after">SONRA</div>
+      </div>
+      <!-- ÖNCE (üst katman, clip ile kırpılıyor) -->
+      <div class="compare-before" id="compareBefore">
+        <img src="fotolar/carpmis_spindle.jpg"
+             alt="Taşlama öncesi hasarlı spindle koniği"
+             draggable="false" oncontextmenu="return false;" loading="eager">
+        <div class="compare-label compare-label-before">ÖNCE</div>
+      </div>
+      <!-- Sürükleme çizgisi -->
+      <div class="compare-handle" id="compareHandle">
+        <div class="compare-line"></div>
+        <div class="compare-btn">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+            <polyline points="15 18 9 12 15 6"></polyline>
+          </svg>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+            <polyline points="9 18 15 12 9 6"></polyline>
+          </svg>
+        </div>
+      </div>
+      <!-- Alt bilgi -->
+      <div class="compare-info">
+        <span>← Sürükle →</span>
+      </div>
     </div>
     <div class="hero-accent"></div>
-    <div class="hero-img-overlay" aria-hidden="true"></div>
   </div>
 </section>
 
@@ -959,6 +1023,45 @@ const obs = new IntersectionObserver(entries => {
 }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
 document.querySelectorAll('.fade-in').forEach(el => obs.observe(el));
 
+// Compare Slider
+(function() {
+  const slider = document.getElementById('compareSlider');
+  const before = document.getElementById('compareBefore');
+  const handle = document.getElementById('compareHandle');
+  if (!slider || !before || !handle) return;
+
+  let isDragging = false;
+  let pct = 50;
+
+  function setPosition(x) {
+    const rect = slider.getBoundingClientRect();
+    let p = ((x - rect.left) / rect.width) * 100;
+    p = Math.max(2, Math.min(98, p));
+    pct = p;
+    before.style.clipPath = `inset(0 ${100 - p}% 0 0)`;
+    handle.style.left = p + '%';
+  }
+
+  // Mouse
+  slider.addEventListener('mousedown', e => { isDragging = true; setPosition(e.clientX); e.preventDefault(); });
+  window.addEventListener('mousemove', e => { if (isDragging) setPosition(e.clientX); });
+  window.addEventListener('mouseup', () => { isDragging = false; });
+
+  // Touch
+  slider.addEventListener('touchstart', e => { isDragging = true; setPosition(e.touches[0].clientX); e.preventDefault(); }, {passive:false});
+  window.addEventListener('touchmove', e => { if (isDragging) setPosition(e.touches[0].clientX); }, {passive:true});
+  window.addEventListener('touchend', () => { isDragging = false; });
+
+  // Başlangıç animasyonu — soldan sağa süpür
+  let animPct = 0;
+  const anim = setInterval(() => {
+    animPct += 1.2;
+    if (animPct >= 50) { clearInterval(anim); animPct = 50; }
+    before.style.clipPath = `inset(0 ${100 - animPct}% 0 0)`;
+    handle.style.left = animPct + '%';
+  }, 16);
+})();
+
 // Resim koruması — sağ tık engelle
 document.addEventListener('contextmenu', e => {
   if (e.target.tagName === 'IMG') { e.preventDefault(); return false; }
@@ -991,6 +1094,45 @@ const obs = new IntersectionObserver(entries => {
   entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
 }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
 document.querySelectorAll('.fade-in').forEach(el => obs.observe(el));
+
+// Compare Slider
+(function() {
+  const slider = document.getElementById('compareSlider');
+  const before = document.getElementById('compareBefore');
+  const handle = document.getElementById('compareHandle');
+  if (!slider || !before || !handle) return;
+
+  let isDragging = false;
+  let pct = 50;
+
+  function setPosition(x) {
+    const rect = slider.getBoundingClientRect();
+    let p = ((x - rect.left) / rect.width) * 100;
+    p = Math.max(2, Math.min(98, p));
+    pct = p;
+    before.style.clipPath = `inset(0 ${100 - p}% 0 0)`;
+    handle.style.left = p + '%';
+  }
+
+  // Mouse
+  slider.addEventListener('mousedown', e => { isDragging = true; setPosition(e.clientX); e.preventDefault(); });
+  window.addEventListener('mousemove', e => { if (isDragging) setPosition(e.clientX); });
+  window.addEventListener('mouseup', () => { isDragging = false; });
+
+  // Touch
+  slider.addEventListener('touchstart', e => { isDragging = true; setPosition(e.touches[0].clientX); e.preventDefault(); }, {passive:false});
+  window.addEventListener('touchmove', e => { if (isDragging) setPosition(e.touches[0].clientX); }, {passive:true});
+  window.addEventListener('touchend', () => { isDragging = false; });
+
+  // Başlangıç animasyonu — soldan sağa süpür
+  let animPct = 0;
+  const anim = setInterval(() => {
+    animPct += 1.2;
+    if (animPct >= 50) { clearInterval(anim); animPct = 50; }
+    before.style.clipPath = `inset(0 ${100 - animPct}% 0 0)`;
+    handle.style.left = animPct + '%';
+  }, 16);
+})();
 
 // Resim koruması — sağ tık engelle
 document.addEventListener('contextmenu', e => {

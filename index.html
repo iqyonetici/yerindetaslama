@@ -103,236 +103,143 @@ img { max-width: 100%; height: auto; display: block; }
 /* ── HERO ── */
 .hero {
   position: relative; overflow: hidden;
-  background: var(--bg);
+  min-height: 100vh;
   display: flex; flex-direction: column;
 }
 .hero-bg {
   position: absolute; inset: 0; z-index: 0;
 }
 .hero-bg img {
-  width: 100%; height: 100%; object-fit: cover;
-  object-position: center;
-  opacity: 0.55;
-  pointer-events: none; user-select: none; -webkit-user-drag: none;
+  width: 100%; height: 100%; object-fit: cover; object-position: center right;
+  opacity: 0.5; pointer-events: none; user-select: none; -webkit-user-drag: none;
+  animation: heroBgFade .8s ease forwards;
 }
+@keyframes heroBgFade { from{opacity:0} to{opacity:0.5} }
 .hero-bg-overlay {
   position: absolute; inset: 0;
   background: linear-gradient(
     to right,
-    rgba(10,10,10,0.96) 0%,
-    rgba(10,10,10,0.85) 35%,
-    rgba(10,10,10,0.4) 65%,
-    rgba(10,10,10,0.15) 100%
+    rgba(8,8,8,0.97) 0%,
+    rgba(8,8,8,0.88) 30%,
+    rgba(8,8,8,0.55) 58%,
+    rgba(8,8,8,0.25) 100%
   );
 }
-.hero-inner {
+.hero-content {
   position: relative; z-index: 1;
   display: grid; grid-template-columns: 1fr 1fr;
-  min-height: 70vh;
+  flex: 1; min-height: 100vh;
+  align-items: center;
+  padding: 0 40px;
+  gap: 32px;
 }
 .hero-left {
-  padding: 52px 48px 40px; display: flex; flex-direction: column; justify-content: center;
+  display: flex; flex-direction: column; justify-content: center;
+  padding: 48px 0;
 }
-.hero-right-space { pointer-events: none; }
 .hero-badge {
   display: inline-flex; align-items: center; gap: 8px;
   border: 1px solid var(--gold-border); background: var(--gold-dim);
-  color: var(--gold); font-size: 11px; font-weight: 600;
-  padding: 6px 16px; border-radius: 2px; margin-bottom: 22px;
+  color: var(--gold); font-size: 10px; font-weight: 600;
+  padding: 5px 14px; border-radius: 2px; margin-bottom: 18px;
   letter-spacing: 1.5px; text-transform: uppercase; width: fit-content;
 }
 .hero-badge::before {
-  content: ''; width: 7px; height: 7px; border-radius: 50%;
-  background: var(--gold); animation: pulse 2s infinite;
+  content: ''; width: 6px; height: 6px; border-radius: 50%;
+  background: var(--gold); animation: pulse 2s infinite; flex-shrink: 0;
 }
 @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
 .hero h1 {
-  font-family: var(--font-h); font-size: 50px; font-weight: 700;
-  line-height: 1.0; color: #fff; margin-bottom: 18px;
+  font-family: var(--font-h); font-size: 52px; font-weight: 700;
+  line-height: 1.0; color: #fff; margin-bottom: 14px;
   text-transform: uppercase; letter-spacing: -0.5px;
 }
 .hero h1 em { color: var(--gold); font-style: normal; }
-.hero-sub { font-size: 16px; color: var(--txt2); line-height: 1.7; max-width: 460px; margin-bottom: 32px; }
-/* Hero Form */
+.hero-sub { font-size: 14px; color: var(--txt2); line-height: 1.7; margin-bottom: 20px; }
 .hero-form {
-  margin-top: 20px;
-  background: rgba(10,10,10,0.82);
+  background: rgba(8,8,8,0.82);
   border: 1px solid rgba(245,216,0,0.25);
-  border-radius: 6px; padding: 20px;
-  backdrop-filter: blur(8px);
-  max-width: 420px;
+  border-radius: 6px; padding: 18px;
+  backdrop-filter: blur(10px);
+  max-width: 400px;
 }
 .hero-form-title {
-  font-size: 12px; font-weight: 600; color: var(--gold);
-  text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 14px;
+  font-size: 11px; font-weight: 600; color: var(--gold);
+  text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 12px;
 }
-.hero-form-row {
-  display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 8px;
-}
+.hero-form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 7px; margin-bottom: 7px; }
 .hero-input {
   background: rgba(255,255,255,0.06);
-  border: 1px solid rgba(255,255,255,0.12);
-  border-radius: 3px; padding: 10px 12px;
-  font-size: 13px; color: var(--txt); font-family: var(--font);
-  outline: none; transition: border-color .2s;
-  width: 100%;
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 3px; padding: 9px 11px;
+  font-size: 12px; color: var(--txt); font-family: var(--font);
+  outline: none; transition: border-color .2s; width: 100%;
 }
 .hero-input:focus { border-color: var(--gold); }
 .hero-input::placeholder { color: var(--txt3); }
 .hero-select { cursor: pointer; }
 .hero-select option { background: #111; color: var(--txt); }
 .hero-form-btn {
-  display: block; width: 100%; margin-top: 10px;
+  display: block; width: 100%; margin-top: 9px;
   background: var(--gold); color: #000;
-  font-size: 14px; font-weight: 700; text-align: center;
-  padding: 12px 20px; border-radius: 3px;
+  font-size: 13px; font-weight: 700; text-align: center;
+  padding: 11px 16px; border-radius: 3px;
   transition: background .2s, transform .15s;
-  letter-spacing: 0.3px;
 }
 .hero-form-btn:hover { background: #ffe600; transform: translateY(-1px); }
-.hero-form-note {
-  font-size: 11px; color: var(--txt3); text-align: center; margin-top: 8px;
-}
+.hero-form-note { font-size: 11px; color: var(--txt3); text-align: center; margin-top: 7px; }
 
-/* Hero Önce/Sonra bar */
-.hero-onceson {
-  position: relative; z-index: 2;
-  display: grid; grid-template-columns: 1fr 1fr 1fr 1fr;
-  border-top: 2px solid var(--gold);
-  background: rgba(8,8,8,0.95);
+/* Sağ: Kartlar */
+.hero-right {
+  display: flex; flex-direction: column; gap: 12px;
+  padding: 48px 0;
 }
-.hero-onceson-card {
-  border-right: 1px solid var(--line);
-  overflow: hidden; cursor: default;
-  transition: background .2s;
+.hero-cards-label {
+  font-size: 10px; font-weight: 600; color: var(--gold);
+  text-transform: uppercase; letter-spacing: 2px;
+  display: flex; align-items: center; gap: 8px;
 }
-.hero-onceson-card:hover { background: rgba(245,216,0,0.04); }
-.hero-onceson-img {
-  position: relative; overflow: hidden; height: 140px;
+.hero-cards-label::before { content:''; display:block; width:20px; height:2px; background:var(--gold); }
+.hero-cards { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; }
+.hero-card {
+  background: rgba(8,8,8,0.75);
+  border: 1px solid var(--line);
+  border-radius: 4px; overflow: hidden;
+  backdrop-filter: blur(6px);
+  transition: border-color .2s, transform .2s;
 }
-.hero-onceson-img img {
+.hero-card:hover { border-color: rgba(245,216,0,0.4); transform: translateY(-2px); }
+.hero-card-after { border-color: rgba(29,158,117,0.4); }
+.hero-card-img { position: relative; overflow: hidden; height: 100px; }
+.hero-card-img img {
   width: 100%; height: 100%; object-fit: cover;
-  transition: transform .4s ease; opacity: 0.85;
+  transition: transform .35s; opacity: 0.88;
   pointer-events: none; user-select: none; -webkit-user-drag: none;
 }
-.hero-onceson-card:hover .hero-onceson-img img { transform: scale(1.05); opacity: 1; }
-.hero-onceson-tag {
-  position: absolute; bottom: 8px; left: 8px;
-  font-size: 10px; font-weight: 700; padding: 3px 10px;
+.hero-card:hover .hero-card-img img { transform: scale(1.06); opacity: 1; }
+.hero-card-tag {
+  position: absolute; bottom: 6px; left: 6px;
+  font-size: 9px; font-weight: 700; padding: 2px 8px;
   border-radius: 2px; letter-spacing: 0.5px; text-transform: uppercase;
 }
-.tag-red { background: rgba(200,40,40,0.88); color: #fff; }
-.tag-green { background: rgba(29,158,117,0.88); color: #fff; }
-.hero-onceson-body {
-  padding: 10px 12px; display: flex; flex-direction: column; gap: 3px;
+.tag-red { background: rgba(200,40,40,0.88); color:#fff; }
+.tag-green { background: rgba(29,158,117,0.88); color:#fff; }
+.hero-card-body { padding: 8px 10px; }
+.hero-card-body strong { display:block; font-size: 12px; font-weight: 600; color: var(--txt); margin-bottom:2px; }
+.hero-card-body span { font-size: 11px; color: var(--txt3); }
+.hero-stats-row {
+  display: flex; align-items: center; justify-content: space-between;
+  background: rgba(8,8,8,0.7); border: 1px solid var(--line);
+  border-radius: 4px; padding: 12px 16px;
+  backdrop-filter: blur(6px);
 }
-.hero-onceson-body strong { font-size: 13px; font-weight: 600; color: var(--txt); }
-.hero-onceson-body span { font-size: 11px; color: var(--txt3); }
-.hero-onceson-stat {
-  display: flex; flex-direction: column; align-items: center; justify-content: center;
-  padding: 16px; gap: 4px; background: rgba(245,216,0,0.05);
-}
-.stat-big { font-family: var(--font-h); font-size: 22px; font-weight: 700; color: var(--gold); }
-.stat-small { font-size: 10px; color: var(--txt3); text-align: center; letter-spacing: 0.3px; }
-.stat-divider { width: 30px; height: 1px; background: var(--line); margin: 6px 0; }
-
-.hero-btns { display: flex; gap: 14px; flex-wrap: wrap; }
-.btn-primary {
-  background: var(--gold); color: #000; font-size: 15px; font-weight: 700;
-  padding: 14px 32px; border-radius: 3px; border: none; cursor: pointer;
-  transition: background .2s, transform .15s;
-}
-.btn-primary:hover { background: #ffe600; transform: translateY(-2px); }
-.btn-secondary {
-  background: transparent; color: var(--txt); font-size: 15px; font-weight: 500;
-  padding: 14px 32px; border-radius: 3px; border: 1px solid var(--bg4); cursor: pointer;
-  transition: border-color .2s, color .2s, background .2s;
-}
-.btn-secondary:hover { border-color: var(--gold); color: var(--gold); background: var(--gold-dim); }
-.hero-trust {
-  margin-top: 24px; display: flex; align-items: center; gap: 24px;
-  padding-top: 32px; border-top: 1px solid var(--line);
-}
-.trust-item { text-align: center; }
-.trust-n { font-family: var(--font-h); font-size: 28px; font-weight: 700; color: var(--gold); }
-.trust-l { font-size: 11px; color: var(--txt3); text-transform: uppercase; letter-spacing: 1px; }
-.trust-div { width: 1px; height: 36px; background: var(--line); }
-.hero-right {
-  position: relative; overflow: hidden; background: var(--bg3);
-  border-left: 1px solid var(--line);
-}
-
-/* ── COMPARE SLIDER ── */
-.compare-slider {
-  position: absolute; inset: 0;
-  cursor: ew-resize; user-select: none;
-  -webkit-user-select: none;
-}
-.compare-after, .compare-before {
-  position: absolute; inset: 0; overflow: hidden;
-}
-.compare-after img, .compare-before img {
-  width: 100%; height: 100%; object-fit: cover;
-  pointer-events: none; -webkit-user-drag: none;
-  display: block;
-}
-.compare-before {
-  clip-path: inset(0 50% 0 0);
-  transition: clip-path 0s;
-}
-.compare-label {
-  position: absolute; top: 16px;
-  font-size: 11px; font-weight: 700;
-  padding: 4px 12px; border-radius: 2px;
-  letter-spacing: 1px; text-transform: uppercase;
-  z-index: 3;
-}
-.compare-label-before {
-  left: 12px;
-  background: rgba(200,40,40,0.88); color: #fff;
-}
-.compare-label-after {
-  right: 12px;
-  background: rgba(29,158,117,0.88); color: #fff;
-}
-.compare-handle {
-  position: absolute; top: 0; bottom: 0;
-  left: 50%; transform: translateX(-50%);
-  width: 44px; z-index: 10;
-  display: flex; flex-direction: column; align-items: center; justify-content: center;
-  pointer-events: none;
-}
-.compare-line {
-  position: absolute; top: 0; bottom: 0; left: 50%;
-  width: 2px; background: #fff;
-  transform: translateX(-50%);
-  box-shadow: 0 0 8px rgba(0,0,0,0.5);
-}
-.compare-btn {
-  width: 44px; height: 44px; border-radius: 50%;
-  background: #fff; display: flex; align-items: center; justify-content: center;
-  box-shadow: 0 2px 12px rgba(0,0,0,0.4);
-  color: #000; gap: 0; z-index: 2; position: relative;
-  transition: transform .15s;
-}
-.compare-slider:active .compare-btn { transform: scale(1.1); }
-.compare-info {
-  position: absolute; bottom: 14px; left: 50%; transform: translateX(-50%);
-  background: rgba(0,0,0,0.55); color: rgba(255,255,255,0.8);
-  font-size: 11px; padding: 4px 14px; border-radius: 20px;
-  letter-spacing: 0.5px; white-space: nowrap; z-index: 5;
-  animation: fadeInfo 3s ease 2s forwards;
-}
-@keyframes fadeInfo { 0%{opacity:1} 100%{opacity:0} }
-
-.hero-right-ph {
-  width: 100%; height: 100%; min-height: 500px;
-  display: flex; flex-direction: column; align-items: center; justify-content: center;
-  gap: 10px; color: var(--txt3);
-}
-.hero-accent { position: absolute; top: 0; right: 0; width: 4px; height: 100%; background: linear-gradient(180deg, var(--gold), var(--gold2), transparent); z-index: 20; }
+.hero-stat { display: flex; flex-direction: column; align-items: center; gap: 2px; }
+.hs-n { font-family: var(--font-h); font-size: 20px; font-weight: 700; color: var(--gold); }
+.hs-l { font-size: 10px; color: var(--txt3); text-transform: uppercase; letter-spacing: 0.5px; }
+.hs-div { width:1px; height:32px; background: var(--line); }
 
 /* ── STATS BAR ── */
+
 .stats-bar { display: grid; grid-template-columns: repeat(4,1fr); background: var(--bg3); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
 .stat { padding: 18px; text-align: center; border-right: 1px solid var(--line); }
 .stat:last-child { border-right: none; }
@@ -599,17 +506,15 @@ img { max-width: 100%; height: auto; display: block; }
   .nav-brand span { font-size: 10px; }
   .nav-cta { font-size: 12px; padding: 8px 14px; }
 
-  .hero-inner { grid-template-columns: 1fr; }
-  .hero-right-space { display: none; }
-  .hero-left { padding: 36px 20px 28px; }
+  .hero-content { grid-template-columns: 1fr; padding: 0 20px; min-height: auto; }
+  .hero-left { padding: 36px 0 20px; }
+  .hero-right { padding: 0 0 32px; }
   .hero h1 { font-size: 38px; }
-  .hero-sub { font-size: 14px; }
+  .hero-sub { font-size: 13px; }
   .hero-form { max-width: 100%; }
   .hero-form-row { grid-template-columns: 1fr; }
-  .hero-onceson { grid-template-columns: 1fr 1fr; }
-  .hero-onceson-img { height: 110px; }
-  .hero-onceson-stat { grid-column: span 2; flex-direction: row; flex-wrap: wrap; justify-content: center; gap: 12px; }
-  .stat-divider { width: 1px; height: 30px; margin: 0 4px; }
+  .hero-cards { grid-template-columns: 1fr 1fr 1fr; }
+  .hero-card-img { height: 80px; }
 
   .stats-bar { grid-template-columns: repeat(2,1fr); }
   .stat { padding: 14px 10px; }
@@ -635,9 +540,9 @@ img { max-width: 100%; height: auto; display: block; }
 }
 
 @media (max-width: 520px) {
-  .hero h1 { font-size: 32px; }
-  .hero-onceson { grid-template-columns: 1fr; }
-  .hero-onceson-stat { grid-column: span 1; }
+  .hero h1 { font-size: 30px; }
+  .hero-cards { grid-template-columns: 1fr; }
+  .hero-stats-row { flex-wrap: wrap; gap: 10px; }
   .hizmet-grid { grid-template-columns: 1fr; }
   .blog-grid { grid-template-columns: 1fr; }
   .stats-bar { grid-template-columns: repeat(2,1fr); }
@@ -679,7 +584,7 @@ img { max-width: 100%; height: auto; display: block; }
 
 <!-- HERO -->
 <section class="hero" id="anasayfa">
-  <!-- Arka plan resmi -->
+  <!-- Tam ekran arka plan resmi -->
   <div class="hero-bg">
     <img src="fotolar/hero_spindle.jpg"
          alt="Yerinde CNC spindle konik taşlama"
@@ -687,19 +592,16 @@ img { max-width: 100%; height: auto; display: block; }
     <div class="hero-bg-overlay"></div>
   </div>
 
-  <div class="hero-inner">
-    <!-- Sol: Metin + Form -->
+  <!-- İçerik -->
+  <div class="hero-content">
+    <!-- Sol: Başlık + Form -->
     <div class="hero-left">
       <div class="hero-badge">
         <span>24 Saat Hizmet · Makine Sökmeden</span>
       </div>
       <h1>Yerinde<br><em>Spindle</em><br>Taşlama</h1>
-      <p class="hero-sub">
-        CNC tezgahınız yerinde taşlanır, üretim durmaz.
-        Fanuc, Mazak, DMG Mori, Okuma — ortalama <strong>3 saatte teslim</strong>.
-      </p>
+      <p class="hero-sub">Fanuc, Mazak, DMG Mori, Okuma ve tüm CNC tezgahlara<br>makine sökmeden ortalama <strong>3 saatte</strong> çözüm.</p>
 
-      <!-- Form -->
       <div class="hero-form">
         <div class="hero-form-title">Hızlı Bilgi Alın</div>
         <div class="hero-form-row">
@@ -708,82 +610,66 @@ img { max-width: 100%; height: auto; display: block; }
         </div>
         <div class="hero-form-row">
           <select class="hero-input hero-select">
-            <option value="">CNC Marka Seçin</option>
-            <option>Fanuc</option>
-            <option>Mazak</option>
-            <option>DMG Mori</option>
-            <option>Okuma</option>
-            <option>Haas</option>
-            <option>Doosan</option>
-            <option>Diğer</option>
+            <option value="">CNC Marka</option>
+            <option>Fanuc</option><option>Mazak</option><option>DMG Mori</option>
+            <option>Okuma</option><option>Haas</option><option>Doosan</option><option>Diğer</option>
           </select>
           <select class="hero-input hero-select">
-            <option value="">Şehir Seçin</option>
-            <option>İstanbul</option>
-            <option>Ankara</option>
-            <option>Bursa</option>
-            <option>İzmir</option>
-            <option>İzmit</option>
-            <option>Sakarya</option>
-            <option>Tekirdağ</option>
-            <option>Diğer</option>
+            <option value="">Şehir</option>
+            <option>İstanbul</option><option>Ankara</option><option>Bursa</option>
+            <option>İzmir</option><option>İzmit</option><option>Sakarya</option><option>Diğer</option>
           </select>
         </div>
-        <a href="tel:+905542980504" class="hero-form-btn">
-          📞 Hemen Ara — 0554 298 05 04
-        </a>
+        <a href="tel:+905542980504" class="hero-form-btn">📞 Hemen Ara — 0554 298 05 04</a>
         <div class="hero-form-note">veya formu doldurun, sizi arayalım</div>
       </div>
     </div>
 
-    <!-- Sağ: Boş (resim görünsün) -->
-    <div class="hero-right-space"></div>
-  </div>
-
-  <!-- Önce / Sonra kartları -->
-  <div class="hero-onceson">
-    <div class="hero-onceson-card">
-      <div class="hero-onceson-img">
-        <img src="fotolar/carpmis_spindle.jpg" alt="Çarpmış hasarlı spindle - taşlama öncesi"
-             draggable="false" oncontextmenu="return false;" loading="lazy">
-        <div class="hero-onceson-tag tag-red">ÖNCE — Çarpma Hasarı</div>
+    <!-- Sağ: Önce / Sonra kartları -->
+    <div class="hero-right">
+      <div class="hero-cards-label">Öncesi / Sonrası</div>
+      <div class="hero-cards">
+        <div class="hero-card">
+          <div class="hero-card-img">
+            <img src="fotolar/carpmis_spindle.jpg" alt="Çarpmış hasarlı spindle koniği"
+                 draggable="false" oncontextmenu="return false;" loading="eager">
+            <div class="hero-card-tag tag-red">ÖNCE</div>
+          </div>
+          <div class="hero-card-body">
+            <strong>Çarpma Hasarı</strong>
+            <span>Konik yüzeyde derin izler</span>
+          </div>
+        </div>
+        <div class="hero-card">
+          <div class="hero-card-img">
+            <img src="fotolar/zamanla_korozyon.jpg" alt="Korozyon hasarlı spindle"
+                 draggable="false" oncontextmenu="return false;" loading="eager">
+            <div class="hero-card-tag tag-red">ÖNCE</div>
+          </div>
+          <div class="hero-card-body">
+            <strong>Korozyon</strong>
+            <span>Uzun kullanım, pas, aşınma</span>
+          </div>
+        </div>
+        <div class="hero-card hero-card-after">
+          <div class="hero-card-img">
+            <img src="fotolar/taslanmis.jpg" alt="Taşlama sonrası temiz spindle"
+                 draggable="false" oncontextmenu="return false;" loading="eager">
+            <div class="hero-card-tag tag-green">SONRA ✓</div>
+          </div>
+          <div class="hero-card-body">
+            <strong>Taşlama Sonrası</strong>
+            <span>µm hassasiyetinde, salgısız</span>
+          </div>
+        </div>
       </div>
-      <div class="hero-onceson-body">
-        <strong>Çarpmış Spindle</strong>
-        <span>Konik yüzeyde derin izler, salgı artışı</span>
+      <div class="hero-stats-row">
+        <div class="hero-stat"><span class="hs-n">~3 Saat</span><span class="hs-l">İşlem süresi</span></div>
+        <div class="hs-div"></div>
+        <div class="hero-stat"><span class="hs-n">1000+</span><span class="hs-l">Taşlama</span></div>
+        <div class="hs-div"></div>
+        <div class="hero-stat"><span class="hs-n">7/24</span><span class="hs-l">Acil servis</span></div>
       </div>
-    </div>
-    <div class="hero-onceson-card">
-      <div class="hero-onceson-img">
-        <img src="fotolar/zamanla_korozyon.jpg" alt="Korozyon hasarlı spindle - taşlama öncesi"
-             draggable="false" oncontextmenu="return false;" loading="lazy">
-        <div class="hero-onceson-tag tag-red">ÖNCE — Korozyon</div>
-      </div>
-      <div class="hero-onceson-body">
-        <strong>Korozyon Hasarı</strong>
-        <span>Uzun kullanım, pas ve aşınma</span>
-      </div>
-    </div>
-    <div class="hero-onceson-card">
-      <div class="hero-onceson-img">
-        <img src="fotolar/taslanmis.jpg" alt="Yerinde taşlama sonrası temiz spindle"
-             draggable="false" oncontextmenu="return false;" loading="lazy">
-        <div class="hero-onceson-tag tag-green">SONRA — Taşlandı ✓</div>
-      </div>
-      <div class="hero-onceson-body">
-        <strong>Taşlama Sonrası</strong>
-        <span>µm hassasiyetinde, salgısız teslim</span>
-      </div>
-    </div>
-    <div class="hero-onceson-stat">
-      <div class="stat-big">~3 Saat</div>
-      <div class="stat-small">Ortalama işlem süresi</div>
-      <div class="stat-divider"></div>
-      <div class="stat-big">1000+</div>
-      <div class="stat-small">Tamamlanan taşlama</div>
-      <div class="stat-divider"></div>
-      <div class="stat-big">0 Söküm</div>
-      <div class="stat-small">Makine yerinde kalır</div>
     </div>
   </div>
 </section>
@@ -821,7 +707,7 @@ img { max-width: 100%; height: auto; display: block; }
     <p class="sec-desc">Hasarlı ve yıpranmış spindle koniğinin yerinde taşlama ile nasıl yenilendiğini görün. Her işlem sonrası µm ölçüm raporu verilir.</p>
   </div>
 
-  <div class="onceson-grid fade-in">
+  <div class="onceson-grid fade-in" style="display:none">
     <div class="onceson-card">
       <div class="onceson-img-wrap">
         <img src="fotolar/carpmis_spindle.jpg"
